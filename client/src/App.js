@@ -5,6 +5,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "theme";
 import HomePage from "screens/homepage";
+import MenuPage from "screens/menupage";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -18,6 +19,7 @@ function App() {
         <CssBaseline/>
         <Routes>
           <Route path="/" element={<HomePage/>} />
+          <Route path="/menu" element={<MenuPage/>} />
         </Routes>
       </ThemeProvider>
       </BrowserRouter>

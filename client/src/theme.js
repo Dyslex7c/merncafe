@@ -74,6 +74,10 @@ export const colorTokens = {
       typography: {
         fontFamily: ["Barlow Semi Condensed", "sans-serif"].join(","),
         fontSize: 12,
+        h0: {
+          fontFamily: ["montserrat", "sans-serif"].join(","),
+          fontSize: 64,
+        },
         h1: {
           fontFamily: ["poppins", "sans-serif"].join(","),
           fontSize: 40,

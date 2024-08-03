@@ -7,14 +7,13 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
     const theme = useTheme();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const dark = theme.palette.neutral.dark;
-    document.addEventListener("DOMContentLoaded", function() {
-        setTimeout(function() { AOS.refresh(); }, 500);
-    });
     useEffect(() => {
         AOS.init({duration: 1000});
         AOS.refresh();
@@ -29,7 +28,7 @@ const HomePage = () => {
                     C A F É ⠀D U L C E T
                 </Typography>
                 <Box display="flex" justifyContent="space-between" width="20%" marginRight={5}>
-                    <Typography style={{fontSize: "1rem", fontWeight: "300"}}>
+                    <Typography onClick={() => navigate("/menu")} style={{fontSize: "1rem", fontWeight: "300", cursor: "pointer"}}>
                         MENU
                     </Typography>
                     <Typography style={{fontSize: "1rem", fontWeight: "300"}}>
@@ -44,7 +43,9 @@ const HomePage = () => {
                     </IconButton>
                 </Box>
             </Box>
-            <img src={cafeimg} alt="dulcet" width="100%"/>
+            <Box minHeight={900}>
+                <img src={cafeimg} alt="dulcet" width="100%"/>
+            </Box>
             <Box m={5} p={4} data-aos="fade-up" display="flex" width="90%" justifyContent="space-between">
                 <Box>
                     <Typography variant="h1" marginBottom={4} style={{fontWeight: 600}}>
@@ -55,6 +56,7 @@ const HomePage = () => {
                     </Typography>
                 </Box>
                 <Button
+                onClick={() => navigate("/menu")}
                 sx={{
                     p: "0.5rem",
                     width: "180px",
