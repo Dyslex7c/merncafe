@@ -5,6 +5,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import pdf from "../../components/menupdf/menu.pdf";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "./menu.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -12,8 +13,8 @@ const Menu = React.forwardRef((props, ref) => {
     console.log(props);
     
     return (
-        <div className="demoPage" ref={ref} width={480} height={684} >
-            <p style={{color: "white"}}>{props.children}</p>
+        <div className="demoPage" ref={ref} width={480} height={684} backgroundColor= "black">
+            <p>{props.children}</p>
         </div>
     );
 });
