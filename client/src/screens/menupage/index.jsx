@@ -43,7 +43,7 @@ const MenuPage = () => {
                 All our dishes have been prepared by trained chefs and culinary veterans from around the world
             </Typography>
             <Typography data-aos="fade-in" variant='h6' fontWeight="400" marginBottom={5}>
-                Open from 5 AM to 2 AM (12 AM on Sundays)
+                Open from 5 AM to 2 AM (12 AM on Mondays)
             </Typography>
         </Box>
         <HTMLFlipBook width={480} height={684}>

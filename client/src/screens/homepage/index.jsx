@@ -31,7 +31,7 @@ const HomePage = () => {
                     <Typography onClick={() => navigate("/menu")} style={{fontSize: "1rem", fontWeight: "300", cursor: "pointer"}}>
                         MENU
                     </Typography>
-                    <Typography style={{fontSize: "1rem", fontWeight: "300"}}>
+                    <Typography onClick={() => navigate("/location")} style={{fontSize: "1rem", fontWeight: "300", cursor: "pointer"}}>
                         LOCATION AND HOURS
                     </Typography>
                     <IconButton onClick={() => dispatch(setMode())} sx={{padding: "0px", height: "20px"}}>

@@ -6,6 +6,7 @@ import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "theme";
 import HomePage from "screens/homepage";
 import MenuPage from "screens/menupage";
+import LocationPage from "screens/locationpage";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage/>} />
           <Route path="/menu" element={<MenuPage/>} />
+          <Route path="/location" element={<LocationPage/>} />
         </Routes>
       </ThemeProvider>
       </BrowserRouter>
