@@ -7,7 +7,14 @@ import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
 import { useNavigate } from 'react-router-dom'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Icon } from 'leaflet'
+import marker from "../../components/images/marker.png";
 import 'leaflet/dist/leaflet.css';
+const myIcon = new Icon({
+ iconUrl: marker,
+ iconSize: [32,32]
+})
+
 
 const styles = {
     mapRoot: {
@@ -21,20 +28,13 @@ const LocationPage = () => {
     const dispatch = useDispatch();
     const dark = theme.palette.neutral.dark;
 
-    const defaultProps = {
-        center: {
-          lat: 10.99835602,
-          lng: 77.01502627
-        },
-        zoom: 11
-      };
   return (
     <Box>
         <Box display="flex" justifyContent="space-between" marginTop={5} m={2} p={1}>
-                <Typography marginLeft={5} marginRight={16} style={{fontSize: "1rem", fontWeight: "300"}}>
+                <Typography marginLeft={5} marginRight={16}  onClick={()=>navigate("/")} style={{fontSize: "1rem", fontWeight: "300", cursor: "pointer"}}>
                     WELCOME    
                 </Typography>    
-                <Typography style={{fontWeight: "600", fontSize: "1.5rem"}}>
+                <Typography onClick={()=>navigate("/")} style={{fontWeight: "600", fontSize: "1.5rem", cursor: "pointer"}}>
                     C A F É ⠀D U L C E T
                 </Typography>
                 <Box display="flex" justifyContent="space-between" width="20%" marginRight={5}>
@@ -53,20 +53,23 @@ const LocationPage = () => {
                     </IconButton>
                 </Box>
             </Box>
-        <Box m={5} p={4} display="flex" flexDirection="column">
-            <Typography variant='h1' marginLeft={7}>
+        <Box m={5} p={4} marginBottom={2} display="flex" flexDirection="column">
+            <Typography variant='h2' marginLeft={7} marginBottom={3}>
                 Location (Fictitious)
+            </Typography>
+            <Typography variant='h2' style={{fontSize: "1rem"}} marginLeft={7}>
+                32 Heron St. <br/> San Francisco CA 94106 <br/> <br/> Beside Grande Vitesse Systems (GVS) office building in the neighbourhood of Fremont, San Francisco
             </Typography>
         </Box>
         <Box width={1100} marginRight="auto" marginLeft="auto">
-            <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} style={styles.mapRoot}>
+            <MapContainer center={[37.7746, -122.4086]} zoom={13} scrollWheelZoom={false} style={styles.mapRoot}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker position={[51.505, -0.09]}>
+                <Marker position={[37.7746, -122.4086]} icon={myIcon}>
                     <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
+                    Café Dulcet - Your all in one café <br/> <br/> 123 Heron Street <br/> San Francisco, CA
                     </Popup>
                 </Marker>
                 </MapContainer>

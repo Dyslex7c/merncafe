@@ -83,7 +83,7 @@ export const colorTokens = {
           fontSize: 40,
         },
         h2: {
-          fontFamily: ["Rubik", "sans-serif"].join(","),
+          fontFamily: ["Merriweather", "sans-serif"].join(","),
           fontSize: 32,
         },
         h3: {

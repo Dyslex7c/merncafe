@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { Typography, Box, Button, useTheme, IconButton } from '@mui/material'
-import { DarkMode, LightMode } from '@mui/icons-material';
+import { DarkMode, LightMode, Mail, Phone } from '@mui/icons-material';
+import PhoneIcon from '@mui/icons-material/Phone';
+import EmailIcon from '@mui/icons-material/Email';
 import Tooltip from '@mui/material/Tooltip';
 import cafeimg from "../../components/images/download.png";
 import AOS from "aos";
@@ -8,6 +10,8 @@ import "aos/dist/aos.css";
 import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
 import { useNavigate } from 'react-router-dom';
+import food from "../../components/images/food.jpg";
+import "./home.css";
 
 const HomePage = () => {
     const theme = useTheme();
@@ -75,8 +79,77 @@ const HomePage = () => {
                     <Typography style={{fontWeight: "500"}}>V I E W ⠀F U L L⠀M E N U</Typography>
                 </Button>
             </Box>
+            <Box minHeight={900} position="absolute">
+                <img src={food} width="100%" style={{filter: "brightness(50%)"}}/>
+            </Box>
+            <Box m={5} p={4} marginTop={20} data-aos="fade-up" display="flex" width="90%" justifyContent="space-between">
+                <Box>
+                    <Typography variant="h1" marginBottom={4} style={{fontWeight: 600, color: "white"}}>
+                        Discover finger-lickin' good food
+                    </Typography>
+                    <Typography variant="h6" style={{color: "white"}}>
+                        A heritage of flavors, where every bite takes you to heaven, feels so ethereal
+                    </Typography>
+                </Box>
+                <Button
+                onClick={() => navigate("/menu")}
+                sx={{
+                    p: "0.5rem",
+                    width: "200px",
+                    height: "60px",
+                    alignSelf: "center",
+                    fontSize: "1rem",
+                    backgroundColor: "transparent",
+                    border: "2px solid white",
+                    color: "white",
+                    "&:hover": {
+                      backgroundColor: "rgb(0,145,255,0.6)",
+                    }
+                  }}
+                >
+                    <Typography style={{fontWeight: "500"}}>V I E W ⠀F O O D⠀G A L L E R Y</Typography>
+                </Button>
+            </Box>
             <br/>
             <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <Box display="flex" flexDirection="column" alignItems="center" width="100%">
+                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2023 © Title™ Ltd. All rights reserved.</Typography>
+                <Box display="flex">
+                    <Mail />
+                    <Typography marginLeft={1} marginRight={4}>cafe@yahoomail.com</Typography>
+                    <Phone/>
+                    <Typography marginLeft={1}>+91-33-17296023</Typography>
+                </Box>
+            </Box>
         </Box>
   )
 }
