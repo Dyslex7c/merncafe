@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
+import { Phone, Mail } from '@mui/icons-material';
 import HTMLFlipBook from 'react-pageflip';
 import { Document, Page, pdfjs } from 'react-pdf';
 import pdf from "../../components/menupdf/menu.pdf";
@@ -47,19 +48,26 @@ const MenuPage = () => {
                 Open from 5 AM to 2 AM (12 AM on Mondays)
             </Typography>
         </Box>
-        <HTMLFlipBook width={480} height={684}>
-        {
-                        [...Array(numPages).keys()].map((pNum) => (
-                            <Menu key={pNum} number={pNum + 1}>
-                                <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
-                                    <Page pageNumber={pNum} width={480} renderAnnotationLayer={false} renderTextLayer={false} />
-                                </Document>
-                            </Menu>
-                        ))
-                    }
-        </HTMLFlipBook>
-        <br/>
-        <br/>
+            <HTMLFlipBook width={480} height={684}>
+            {
+                            [...Array(numPages).keys()].map((pNum) => (
+                                <Menu key={pNum} number={pNum + 1}>
+                                    <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+                                        <Page pageNumber={pNum} width={480} renderAnnotationLayer={false} renderTextLayer={false} />
+                                    </Document>
+                                </Menu>
+                            ))
+                        }
+            </HTMLFlipBook>
+        <Box display="flex" flexDirection="column" alignItems="center" width="100%" marginTop={10}>
+                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2023 © Title™ Ltd. All rights reserved.</Typography>
+                <Box display="flex">
+                    <Mail />
+                    <Typography marginLeft={1} marginRight={4}>cafe@yahoomail.com</Typography>
+                    <Phone/>
+                    <Typography marginLeft={1}>+91-33-17296023</Typography>
+                </Box>
+        </Box>
     </Box>
   )
 }

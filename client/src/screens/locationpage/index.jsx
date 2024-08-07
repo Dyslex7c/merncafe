@@ -1,7 +1,7 @@
 import React from 'react'
 import GoogleMapReact from 'google-map-react';
 import { Typography, Box, useTheme, IconButton } from '@mui/material'
-import { DarkMode, LightMode } from '@mui/icons-material';
+import { DarkMode, LightMode, Phone, Mail } from '@mui/icons-material';
 import Tooltip from '@mui/material/Tooltip';
 import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
@@ -61,7 +61,7 @@ const LocationPage = () => {
                 32 Heron St. <br/> San Francisco CA 94106 <br/> <br/> Beside Grande Vitesse Systems (GVS) office building in the neighbourhood of Fremont, San Francisco
             </Typography>
         </Box>
-        <Box width={1100} marginRight="auto" marginLeft="auto">
+        <Box width={1100} marginRight="auto" marginLeft="auto" marginBottom={10}>
             <MapContainer center={[37.7746, -122.4086]} zoom={13} scrollWheelZoom={false} style={styles.mapRoot}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -74,6 +74,15 @@ const LocationPage = () => {
                 </Marker>
                 </MapContainer>
         </Box>
+        <Box display="flex" flexDirection="column" alignItems="center" width="100%">
+                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2023 © Title™ Ltd. All rights reserved.</Typography>
+                <Box display="flex">
+                    <Mail />
+                    <Typography marginLeft={1} marginRight={4}>cafe@yahoomail.com</Typography>
+                    <Phone/>
+                    <Typography marginLeft={1}>+91-33-17296023</Typography>
+                </Box>
+            </Box>
     </Box>
     
   )

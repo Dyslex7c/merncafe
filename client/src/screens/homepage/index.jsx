@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import { Typography, Box, Button, useTheme, IconButton } from '@mui/material'
 import { DarkMode, LightMode, Mail, Phone } from '@mui/icons-material';
-import PhoneIcon from '@mui/icons-material/Phone';
-import EmailIcon from '@mui/icons-material/Email';
 import Tooltip from '@mui/material/Tooltip';
 import cafeimg from "../../components/images/download.png";
 import AOS from "aos";
