@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
 import { useNavigate } from 'react-router-dom';
 import food from "../../components/images/food.jpg";
+import axios from 'axios';
 import "./home.css";
 
 const HomePage = () => {
