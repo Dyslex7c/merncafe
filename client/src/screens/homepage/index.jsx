@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Typography, Box, Button, useTheme, IconButton } from '@mui/material'
+import { Typography, Box, Button, useTheme, IconButton, Grid } from '@mui/material'
 import { DarkMode, LightMode, Mail, Phone } from '@mui/icons-material';
 import Tooltip from '@mui/material/Tooltip';
 import cafeimg from "../../components/images/download.png";
@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
 import { useNavigate } from 'react-router-dom';
 import food from "../../components/images/food.jpg";
+import foodData from './foodData';
 import axios from 'axios';
 import "./home.css";
 
@@ -17,6 +18,7 @@ const HomePage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const dark = theme.palette.neutral.dark;
+    
     useEffect(() => {
         AOS.init({duration: 1000});
         AOS.refresh();
@@ -27,7 +29,7 @@ const HomePage = () => {
                 <Typography marginLeft={5} marginRight={16} style={{fontSize: "1rem", fontWeight: "300"}}>
                     WELCOME    
                 </Typography>    
-                <Typography style={{fontWeight: "600", fontSize: "1.5rem"}}>
+                <Typography className={theme.palette.mode === "dark" ? "glow" : ""} style={{fontWeight: "600", fontSize: "1.5rem"}}>
                     C A F É ⠀D U L C E T
                 </Typography>
                 <Box display="flex" justifyContent="space-between" width="20%" marginRight={5}>
@@ -67,7 +69,7 @@ const HomePage = () => {
                     alignSelf: "center",
                     fontSize: "1rem",
                     backgroundColor: theme.palette.mode === "dark" ? "#000" : "#ffffff",
-                    border: "2px solid black",
+                    border: theme.palette.mode === "dark" ? "2px solid white" : "2px solid black",
                     color: theme.palette.mode === "light" ? "black" : "white",
                     "&:hover": {
                       backgroundColor: theme.palette.mode === "dark" ? "#ffffff" : "#000",
@@ -109,39 +111,41 @@ const HomePage = () => {
                     <Typography style={{fontWeight: "500"}}>V I E W ⠀F O O D⠀G A L L E R Y</Typography>
                 </Button>
             </Box>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+            <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
+                <Grid container spacing={5}>
+                        {foodData.map((item) => {
+                            return (
+                                
+                                <Grid item xs={3}>
+                                <Box height={230} bgcolor="rgb(255,255,255,0.3)" borderRadius={3} boxShadow="5px 10px 12px 1px black" className="foodcard" style={{cursor: "pointer"}}>
+                                    <img width="100%" src={require(`../../components/images/${item.src}`)}/>
+                                    <Box width="90%" display="flex" justifyContent="space-between" marginLeft={1} color="white" style={{textShadow: "0px 0px 10px white"}}>
+                                        <Typography variant='h5' fontWeight="200" display="flex" flexDirection="column">
+                                            {item.name}
+                                            <Typography style={{fontSize: "0.7rem", marginBottom: "1rem"}} display="flex" flexDirection="row">
+                                                <Typography m={0.2} style={{fontWeight: "100"}} marginRight={1} variant='h7'>
+                                                    {item.rating}
+                                                </Typography>
+                                                <Typography>
+                                                    {item.rating >= 1.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
+                                                    {item.rating >= 2.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
+                                                    {item.rating >= 3.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
+                                                    {item.rating >= 4.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
+                                                    {item.rating > 4.0 && item.rating < 5.0 && <i class="bi bi-star-half" style={{marginRight: "3px"}}></i>}
+                                                    {item.rating === 5.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}                                                    
+                                                </Typography>
+                                            </Typography>
+                                        </Typography>
+                                        <img width={35} height={35} src={require(`../../components/images/${item.country}.png`)}/>
+                                    </Box>
+                                </Box>
+                                </Grid>
+                            )
+                        })}
+                    </Grid>
+            </Box>
             <Box display="flex" flexDirection="column" alignItems="center" width="100%">
-                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2023 © Title™ Ltd. All rights reserved.</Typography>
+                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2023 © Title™ Ltd. All rights reserved. Images and icons by Freepik, Pixabay, and Flaticons</Typography>
                 <Box display="flex">
                     <Mail />
                     <Typography marginLeft={1} marginRight={4}>cafe@yahoomail.com</Typography>

@@ -83,7 +83,7 @@ export const colorTokens = {
           fontSize: 40,
         },
         h2: {
-          fontFamily: ["Merriweather", "sans-serif"].join(","),
+          fontFamily: ["Playfair Display", "sans-serif"].join(","),
           fontSize: 32,
         },
         h3: {
@@ -91,17 +91,21 @@ export const colorTokens = {
           fontSize: 24,
         },
         h4: {
-          fontFamily: ["Rubik", "sans-serif"].join(","),
+          fontFamily: ["Noto Sans", "sans-serif"].join(","),
           fontSize: 20,
         },
         h5: {
-          fontFamily: ["Rubik", "sans-serif"].join(","),
-          fontSize: 16,
+          fontFamily: ["Noto Sans", "sans-serif"].join(","),
+          fontSize: 18,
         },
         h6: {
           fontFamily: ["poppins", "sans-serif"].join(","),
           fontSize: 14,
         },
+        h7: {
+          fontFamily: ["Noto Sans", "sans-serif"].join(","),
+          fontSize: 13
+        }
       },
     };
   };
