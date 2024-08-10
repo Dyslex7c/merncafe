@@ -86,9 +86,17 @@ export const colorTokens = {
           fontFamily: ["Playfair Display", "sans-serif"].join(","),
           fontSize: 32,
         },
+        h2b: {
+          fontFamily: ["Noto Sans", "sans-serif"].join(","),
+          fontSize: 32,
+        },
         h3: {
           fontFamily: ["Rubik", "sans-serif"].join(","),
           fontSize: 24,
+        },
+        h3b: {
+          fontFamily: ["Barlow Semi Condensed", "sans-serif"].join(","),
+          fontSize: 16,
         },
         h4: {
           fontFamily: ["Noto Sans", "sans-serif"].join(","),

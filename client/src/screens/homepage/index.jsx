@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
-import { Typography, Box, Button, useTheme, IconButton, Grid } from '@mui/material'
+import { Typography, Box, Button, useTheme, IconButton, Grid, Select, MenuItem, FormControl } from '@mui/material'
 import { DarkMode, LightMode, Mail, Phone } from '@mui/icons-material';
+import InputLabel from "@mui/material/InputLabel";
 import Tooltip from '@mui/material/Tooltip';
 import cafeimg from "../../components/images/download.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useDispatch } from 'react-redux';
-import { setMode } from 'state';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFoodData, setLogout, setMode } from 'state';
 import { useNavigate } from 'react-router-dom';
 import food from "../../components/images/food.jpg";
 import foodData from './foodData';
@@ -15,9 +16,12 @@ import "./home.css";
 
 const HomePage = () => {
     const theme = useTheme();
+    const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const dark = theme.palette.neutral.dark;
+    const neutralLight = theme.palette.neutral.light;
+    const background = theme.palette.background.default;
     
     useEffect(() => {
         AOS.init({duration: 1000});
@@ -26,20 +30,68 @@ const HomePage = () => {
     return (
         <Box>
             <Box display="flex" justifyContent="space-between" marginTop={5} m={2} p={1}>
-                <Typography marginLeft={5} marginRight={16} style={{fontSize: "1rem", fontWeight: "300"}}>
+                <Typography m={2} marginLeft={5} marginRight={50} style={{fontSize: "1rem", fontWeight: "300"}}>
                     WELCOME    
                 </Typography>    
-                <Typography className={theme.palette.mode === "dark" ? "glow" : ""} style={{fontWeight: "600", fontSize: "1.5rem"}}>
+                <Typography m={1} className={theme.palette.mode === "dark" ? "glow" : ""} style={{fontWeight: "600", fontSize: "1.5rem"}}>
                     C A F É ⠀D U L C E T
                 </Typography>
-                <Box display="flex" justifyContent="space-between" width="20%" marginRight={5}>
-                    <Typography onClick={() => navigate("/menu")} style={{fontSize: "1rem", fontWeight: "300", cursor: "pointer"}}>
+                <Box display="flex" justifyContent="space-between" width="35%" marginRight={5}>
+                    <Typography onClick={() => navigate("/menu")} m={2} style={{fontSize: "1rem", fontWeight: "300", cursor: "pointer"}}>
                         MENU
                     </Typography>
-                    <Typography onClick={() => navigate("/location")} style={{fontSize: "1rem", fontWeight: "300", cursor: "pointer"}}>
+                    <Typography onClick={() => navigate("/location")} m={2} style={{fontSize: "1rem", fontWeight: "300", cursor: "pointer"}}>
                         LOCATION AND HOURS
                     </Typography>
-                    <IconButton onClick={() => dispatch(setMode())} sx={{padding: "0px", height: "20px"}}>
+                    {user ? (<FormControl variant="standard" value={user.firstName}>
+                        <InputLabel>{user.firstName}</InputLabel>
+                        
+                        <Select
+                        value="Name"
+                        sx={{
+                            backgroundColor: neutralLight,
+                            width: "150px",
+                            borderRadius: "0.25rem",
+                            p: "0.25rem 1rem",
+                            "& .MuiSvgIcon-root": {
+                                pr: "0.25rem",
+                                width: "3rem",
+
+                            },
+                            "& .MuiSelect-select:focus": {
+                                backgroundColor: neutralLight
+                            } 
+                        }}
+                        renderValue={() => {
+                              return <em>Signed in</em>;
+                        }}
+                        >   
+                            
+                            <MenuItem value={user.firstName}>
+                                <Typography>
+                                    {user.firstName}
+                                </Typography>
+                            </MenuItem>
+                            <MenuItem onClick={() => {dispatch(setLogout()); navigate("/login")} }>Log Out</MenuItem>
+                        </Select>
+                    </FormControl>) : (
+                        <Button variant="contained" onClick={() => navigate("/login")} sx={{
+                            backgroundColor: background,
+                            height: "40px",
+                            margin: "0.5rem",
+                            color: theme.palette.mode === "dark" ? dark : "#111",
+                            "&:hover": {
+                            backgroundColor: theme.palette.mode === "dark" ? "#4f4f4f" : "#c7e4ff"
+                        }
+                        }
+                        
+                        }>
+                            <Typography>
+                            Sign in
+                            </Typography>
+                        </Button>
+                    )}
+                    <IconButton onClick={() => dispatch(setMode())} sx={{padding: "0px", height: "20px", margin: "1rem"}}>
                         {theme.palette.mode === "dark" ? (
                             <Tooltip title="Dark Mode"><DarkMode sx={{ fontSize: "25px" }} /></Tooltip>
                         ): (
@@ -115,9 +167,12 @@ const HomePage = () => {
                 <Grid container spacing={5}>
                         {foodData.map((item) => {
                             return (
-                                
                                 <Grid item xs={3}>
-                                <Box height={230} bgcolor="rgb(255,255,255,0.3)" borderRadius={3} boxShadow="5px 10px 12px 1px black" className="foodcard" style={{cursor: "pointer"}}>
+                                <Box onClick={() => {
+                                    dispatch(setFoodData(item))
+                                    navigate(`/food-gallery/${item.path}`)
+                                }
+                                    } height={230} bgcolor="rgb(255,255,255,0.3)" borderRadius={3} boxShadow="5px 10px 12px 1px black" className="foodcard" style={{cursor: "pointer"}}>
                                     <img width="100%" src={require(`../../components/images/${item.src}`)}/>
                                     <Box width="90%" display="flex" justifyContent="space-between" marginLeft={1} color="white" style={{textShadow: "0px 0px 10px white"}}>
                                         <Typography variant='h5' fontWeight="200" display="flex" flexDirection="column">
@@ -145,7 +200,7 @@ const HomePage = () => {
                     </Grid>
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center" width="100%">
-                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2023 © Title™ Ltd. All rights reserved. Images and icons by Freepik, Pixabay, and Flaticons</Typography>
+                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2024 © Title™ Ltd. All rights reserved. Images and icons by Freepik, Pixabay, and Flaticons</Typography>
                 <Box display="flex">
                     <Mail />
                     <Typography marginLeft={1} marginRight={4}>cafe@yahoomail.com</Typography>

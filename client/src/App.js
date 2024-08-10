@@ -7,6 +7,8 @@ import { themeSettings } from "theme";
 import HomePage from "screens/homepage";
 import MenuPage from "screens/menupage";
 import LocationPage from "screens/locationpage";
+import FoodPage from "screens/FoodGallery/Food";
+import LoginPage from "screens/loginPage";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -20,8 +22,10 @@ function App() {
         <CssBaseline/>
         <Routes>
           <Route path="/" element={<HomePage/>} />
+          <Route path="/login" element={<LoginPage/>} />
           <Route path="/menu" element={<MenuPage/>} />
           <Route path="/location" element={<LocationPage/>} />
+          <Route path="/food-gallery/:food" element={<FoodPage/>} />
         </Routes>
       </ThemeProvider>
       </BrowserRouter>
