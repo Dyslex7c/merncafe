@@ -1,24 +1,51 @@
 import React, { useState, useEffect } from 'react'
-import { Typography, Box, useTheme, IconButton } from '@mui/material';
-import { DarkMode, LightMode, Phone, Mail } from '@mui/icons-material';
+import { Typography, Box, useTheme, IconButton, Button } from '@mui/material';
+import { DarkMode, LightMode, Phone, Mail, Login, Check } from '@mui/icons-material';
+import CheckIcon from '@mui/icons-material/Check';
 import Tooltip from '@mui/material/Tooltip';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMode } from 'state';
+import { refreshRateInfo, setMode, setRateInfo } from 'state';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Rating } from 'react-simple-star-rating';
 import "./food.css";
 
 const Food = () => {
     useEffect(() => {
-        window.scrollTo(0, 0);
+        //window.scrollTo(0, 0);
     }, []);
     const foodData = useSelector((state) => state.foodData);
+    const user = useSelector((state) => state.user);
+    const token = useSelector((state) => state.token);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const theme = useTheme();
     const dark = theme.palette.neutral.dark;
     const [foodInfo, setFoodInfo] = useState(null);
-    console.log(foodData);
+    const [rateClicked, setRateClicked] = useState(null);
+    const [rateHover, setRateHover] = useState(false);
+    const [rated, setRated] = useState(false)
+    const [RateEquivalentMessage, setRateEquivalentMessage] = useState(null);
+    const RateEquivalentMessages = ["I hate it", "I don't like it", "It's average", "I like it", "I love it"];
+    const [rating, setRating] = useState(0);
+    const userRating = useSelector((state) => state.rateInfo)
+    console.log(rated);
+    console.log(userRating);
+    
+    useEffect(() => {
+        if (userRating.length > 0 && user)
+        {
+            for (let i = 0; i < userRating.length; i++)
+            {
+                if (userRating[i].email === user.email && userRating[i].foodId === foodData.id)
+                {
+                    setRating(userRating[i].rating)
+                    setRated(true); 
+                }
+            }
+        }
+    }, []);
+    
     async function getWikiResponse(url, config) {
         const res = await axios.get(url, config);
         return res;
@@ -32,6 +59,37 @@ const Food = () => {
           setFoodInfo(result.data.query.pages[0].extract);
         })
       }, [foodData.query]);
+
+      const handleRateit = () => {
+        if (!token)
+            navigate("/login")
+        else {
+            setRateClicked(true);
+        }
+      }
+
+      const handleRating = (rate) => {
+        setRating(rate);
+      }
+
+      const handleEnter = () => {
+        setRateHover(true);
+      }
+
+      const handleLeave = () => {
+        setRateHover(false);
+      }
+
+      const handleMove = (value, index) => {
+        setRateEquivalentMessage(RateEquivalentMessages[index])
+      }
+
+      const handleSubmitRate = () => {
+        dispatch(setRateInfo({"email": user.email, "rating": rating, "foodId": foodData.id}));
+        setRated(true);
+        setRateClicked(false);
+      }
+
     return (
         <Box>
             <Box display="flex" justifyContent="space-between" marginTop={5} m={2} p={1}>
@@ -73,7 +131,7 @@ const Food = () => {
                     <Typography variant='h3b' marginBottom={2}>
                         {foodInfo}
                     </Typography>
-                    <Typography display="flex" flexDirection="row">
+                    <Typography display="flex" flexDirection="row" marginBottom={2.5}>
                         <Typography variant='h2b' fontWeight="100">
                             {foodData.rating}
                         </Typography>
@@ -85,7 +143,74 @@ const Food = () => {
                             {foodData.rating > 4.0 && foodData.rating < 5.0 && <i class="bi bi-star-half" style={{marginRight: "3px"}}></i>}
                             {foodData.rating === 5.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}                                                    
                         </Typography>
+                        <Button variant="contained" onClick={handleRateit} sx={{
+                            backgroundColor: theme.palette.mode === "dark" ? "black" : "white",
+                            border: theme.palette.mode === "dark" ? "2px solid white" : "",
+                            height: "40px",
+                            margin: "0.5rem",
+                            textTransform: "none",
+                            color: theme.palette.mode === "dark" ? dark : "#111",
+                            "&:hover": {
+                            backgroundColor: theme.palette.mode === "dark" ? "white" : "#0062ff",
+                            color: theme.palette.mode === "dark" ? "black" : "white",
+                        }
+                        }
+                        
+                        }>
+                            {rated ? (<Box display="flex" flexDirection="row">
+                                <Box color={ theme.palette.mode === "light" ? "#00c742" : "#00ff44"}>
+                                    <CheckIcon/>
+                                </Box>
+                                <Typography variant="h7" fontWeight="400">
+                                    Rated {rating}
+                                </Typography>
+                            </Box>) : (
+                                <Typography>
+                                    Ate it? Rate it
+                                </Typography>
+                            )}
+                        </Button>
                     </Typography>
+                    {
+                    <Box>
+                    <Box>
+                        {rateClicked && <Box display="flex" flexDirection="row">
+                            <Box>
+                                <Rating
+                                onClick={handleRating}
+                                onPointerEnter={handleEnter}
+                                onPointerLeave={handleLeave}
+                                onPointerMove={handleMove}
+                                />
+                            </Box>
+                            <Typography variant='h5' fontWeight="200" m={1}>
+                                Rate {foodData.name}
+                            </Typography>
+                        </Box>}
+                        {rateHover && <Typography variant='h7' fontWeight="200" marginLeft={9}>
+                            {RateEquivalentMessage}
+                        </Typography>}
+                    </Box>
+                    {rating > 0 && rateClicked && <Button variant="contained" onClick={handleSubmitRate} sx={{
+                            backgroundColor: theme.palette.mode === "dark" ? "black" : "white",
+                            border: theme.palette.mode === "dark" ? "2px solid white" : "",
+                            height: "40px",
+                            width: "200px",
+                            textTransform: "none",
+                            color: theme.palette.mode === "dark" ? dark : "#111",
+                            "&:hover": {
+                            backgroundColor: theme.palette.mode === "dark" ? "white" : "#0062ff",
+                            color: theme.palette.mode === "dark" ? "black" : "white",
+                        }
+                        }
+                        
+                        }>
+                            <Typography variant="h7" fontWeight="400">
+                            Submit
+                            </Typography>
+                        </Button>}
+                        </Box>
+                        }
                 </Box>
                 <Box display="flex" flexDirection="column">
                     <Box display="flex" flexDirection="row" alignSelf="flex-end" marginBottom={5}>

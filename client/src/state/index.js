@@ -5,6 +5,8 @@ const initialState = {
     user: null,
     token: null,
     foodData: null,
+    rateInfo: [],
+    reviewInfo: [],
 }
 
 export const authSlice = createSlice({
@@ -25,9 +27,22 @@ export const authSlice = createSlice({
         setFoodData: (state, action) => {
             state.foodData = action.payload;
         },
+        setRateInfo: (state, action) => {
+            state.rateInfo.push(action.payload);
+        },
+        refreshRateInfo: (state, action) => {
+            state.rateInfo = [];
+        },
+        setReviewInfo: (state, action) => {
+            state.reviewInfo.push(action.payload);
+        },
+        refreshReviewInfo: (state, action) => {
+            state.reviewInfo = [];
+        },
+
     }
 })
 
-export const { setMode, setFoodData, setLogin, setLogout } =
+export const { setMode, setFoodData, setLogin, setLogout, setRateInfo, refreshRateInfo, setReviewInfo, refreshReviewInfo } =
   authSlice.actions;
 export default authSlice.reducer;

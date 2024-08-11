@@ -72,7 +72,7 @@ const foodData = [
         "rating": 4.3
     },
     {
-        "id": "4",
+        "id": "7",
         "name": "Tacos al Pastor",
         "src": "taco.jpg",
         "type": "Pork Dish",
@@ -84,7 +84,7 @@ const foodData = [
         "rating": 4.6
     },
     {
-        "id": "4",
+        "id": "8",
         "name": "Churrasco",
         "src": "churrasco.jpg",
         "type": "Barbecue, Technique",
