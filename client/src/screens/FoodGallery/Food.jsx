@@ -4,7 +4,7 @@ import { DarkMode, LightMode, Phone, Mail, Login, Check } from '@mui/icons-mater
 import CheckIcon from '@mui/icons-material/Check';
 import Tooltip from '@mui/material/Tooltip';
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshRateInfo, setMode, setRateInfo } from 'state';
+import { deleteRateInfo, refreshRateInfo, setMode, setRateInfo } from 'state';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
@@ -12,7 +12,7 @@ import "./food.css";
 
 const Food = () => {
     useEffect(() => {
-        //window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
     }, []);
     const foodData = useSelector((state) => state.foodData);
     const user = useSelector((state) => state.user);
@@ -85,6 +85,11 @@ const Food = () => {
       }
 
       const handleSubmitRate = () => {
+        for (let i = 0; i < userRating.length; i++)
+            {
+                if (user.email === userRating[i].email && userRating[i].foodId === foodData.id)
+                    dispatch(deleteRateInfo(foodData.id));
+            }
         dispatch(setRateInfo({"email": user.email, "rating": rating, "foodId": foodData.id}));
         setRated(true);
         setRateClicked(false);

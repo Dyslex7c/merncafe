@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Box, TextField, Button } from '@mui/material';
+import { Typography, Box, TextField, Button, useTheme } from '@mui/material';
 import { withStyles } from "@mui/styles";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -18,7 +18,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "./menu.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshReviewInfo, setReviewInfo } from 'state';
+import { deleteReviewInfo, refreshReviewInfo, setReviewInfo } from 'state';
 import { useNavigate } from 'react-router-dom';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -33,9 +33,6 @@ const CafeMenu = React.forwardRef((props, ref) => {
 
 const CssTextField = withStyles({
     root: {
-        '& label': {
-            color: 'white',
-        },
         '& label.Mui-focused': {
             color: '#00aaff',
         },
@@ -44,25 +41,26 @@ const CssTextField = withStyles({
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: 'white',
+                borderColor: "white",
             },
             '&:hover fieldset': {
-                borderColor: 'white',
+                borderColor: "white",
             },
             'fieldset': {
-                borderColor: 'white',
+                borderColor: "white",
             },
             'input': {
-                color: 'white'
+                color: "white"
             },
         '&.Mui-focused fieldset': {
-        borderColor: 'white',
+        borderColor: "white",
       },
     },
     }
   })(TextField);
 
 const MenuPage = () => {
+    const theme = useTheme();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [numPages, setNumPages] = useState();
@@ -80,9 +78,12 @@ const MenuPage = () => {
     console.log(reviewed);
     
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
         if (user)
             setUserPicturePath(user.picturePath);
-        //dispatch(refreshReviewInfo());
     }, [])
     
 
@@ -118,6 +119,11 @@ const MenuPage = () => {
     }
 
     const handleReviewSubmit = () => {
+        for (let i = 0; i < userReview.length; i++)
+        {
+            if (user.email === userReview[i].email)
+                dispatch(deleteReviewInfo());
+        }
         dispatch(setReviewInfo({"email": user.email, "review": value}));
     }
 
@@ -132,6 +138,15 @@ const MenuPage = () => {
         setFocused(false);
         if (reviewMessage)
             setReviewed(true);
+    }
+
+    const handleReviewDelete = () => {
+        dispatch(deleteReviewInfo());
+        setReviewed(false);
+        setReviewMessage("");
+        setValue(null);
+        setFocused(false);
+        setAnchorEl(null);
     }
  
     useEffect(() => {
@@ -217,7 +232,9 @@ const MenuPage = () => {
                 {user && <Typography m={1.5} variant='h5' style={{fontWeight: "200"}}>
                 {user.firstName} {user.lastName} - {user.occupation}
                 </Typography>}
-                <Button
+                { reviewed &&
+                    <Box>
+                    <Button
                 id="basic-button"
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
@@ -225,11 +242,14 @@ const MenuPage = () => {
                 onClick={handleMoreverticonClick}
                 sx={{
                     color: "white",
+                    marginTop: "0.5rem",
+                    height: "35px",
+                    width: "1px"
                 }}
             >
                 <MoreVertIcon/>
             </Button>
-            <Menu
+                <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
                 open={open}
@@ -237,16 +257,20 @@ const MenuPage = () => {
                 MenuListProps={{
                 'aria-labelledby': 'basic-button',
                 }}
+                sx={{
+                    width: "150px"
+                }}
             >
                 <MenuItem onClick={handleReviewEdit}>
-                    Edit
+                    <Typography marginRight={1.7}>Edit</Typography>
                     <EditOutlinedIcon/>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem onClick={handleReviewDelete}>
                     Delete
                     <DeleteIcon/>
                 </MenuItem>
             </Menu>
+            </Box>}
             </Box>
             {!reviewed && (<Box><FormControl sx={{width: "100%"}}>
                 <CssTextField

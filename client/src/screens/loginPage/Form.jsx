@@ -43,6 +43,7 @@ const initialValuesLogin = {
 
 const Form = () => {
   const [pageType, setPageType] = useState("login");
+  const [errorMessage, setErrorMessage] = useState(null);
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -65,9 +66,12 @@ const Form = () => {
       }
     );
     const savedUser = await savedUserResponse.json();
+    console.log(savedUser);
     onSubmitProps.resetForm();
+    if (savedUser.error)
+        setErrorMessage("User already exists");
 
-    if (savedUser) {
+    if (savedUser.email) {
       setPageType("login");
     }
   };
@@ -79,8 +83,12 @@ const Form = () => {
       body: JSON.stringify(values),
     });
     const loggedIn = await loggedInResponse.json();
+    
+    if (loggedIn.msg)
+        setErrorMessage(loggedIn.msg);
+
+    if (loggedIn.token) {
     onSubmitProps.resetForm();
-    if (loggedIn) {
       dispatch(
         setLogin({
           user: loggedIn.user,
@@ -128,11 +136,11 @@ const Form = () => {
   })(TextField);
 
   return (
-    <Box>
+    <Box bgcolor={palette.mode === "dark" ? "black" : "white"}>
         <Box width="100%">
             <img width="100%" src={loginimg} style={{position: "absolute", top: "0"}}/>
         </Box>
-        <Box width="85%" m={10} marginTop={18} sx={{position: "relative"}}>
+        <Box width="85%" m={10} marginTop={16} sx={{position: "relative"}}>
         <Formik
         onSubmit={handleFormSubmit}
         initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
@@ -278,6 +286,9 @@ const Form = () => {
                 inputProps={{style: {fontSize: 16, color: "white"}}}
                 InputLabelProps={{style: {fontSize: 16}}}
                 />
+                {errorMessage && <Typography color="#f00000" width={200} fontWeight={400}>
+                        {errorMessage}
+                    </Typography>}
             </Box>
             <Box>
                 <Button
@@ -331,10 +342,11 @@ const Form = () => {
         display="flex"
         flexDirection="column"
         alignItems="center" 
-        width="100%" 
+        width="100%"
+        maxHeight="100%"
         sx={{ 
             position: "relative", 
-            bottom: `${ isLogin ? "-352px" : "45px"}`
+            bottom: `${ isLogin ? "-320px" : "45px"}`
             }}>
                 <Typography marginBottom={3}>
                     All trademarks are properties of their respective owners. 2024 © Title™ Ltd. All rights reserved. Images and icons by Freepik, Pixabay, and Flaticons
