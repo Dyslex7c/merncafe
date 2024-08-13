@@ -181,7 +181,7 @@ const MenuPage = () => {
                             ))
                         }
             </HTMLFlipBook>
-            <Box width="70%">
+            <Box width="70%" marginTop={2}>
                 <Typography variant='h1' fontWeight="100">
                     Reviews(2)
                 </Typography>
@@ -241,7 +241,7 @@ const MenuPage = () => {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleMoreverticonClick}
                 sx={{
-                    color: "white",
+                    color: `${theme.palette.mode === "dark" ? "'white" : "black"}`,
                     marginTop: "0.5rem",
                     height: "35px",
                     width: "1px"

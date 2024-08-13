@@ -67,7 +67,8 @@ const HomePage = () => {
                         }}
                         >   
                             
-                            <MenuItem value={user.firstName}>
+                            <MenuItem onClick={() => navigate(`/profile/${user.firstName}-${user.lastName}`)
+                            } value={user.firstName}>
                                 <Typography>
                                     {user.firstName}
                                 </Typography>

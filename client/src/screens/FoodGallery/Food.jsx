@@ -3,8 +3,9 @@ import { Typography, Box, useTheme, IconButton, Button } from '@mui/material';
 import { DarkMode, LightMode, Phone, Mail, Login, Check } from '@mui/icons-material';
 import CheckIcon from '@mui/icons-material/Check';
 import Tooltip from '@mui/material/Tooltip';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteRateInfo, refreshRateInfo, setMode, setRateInfo } from 'state';
+import { deleteListInfo, deleteRateInfo, refreshRateInfo, setListInfo, setMode, setRateInfo } from 'state';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
@@ -28,9 +29,9 @@ const Food = () => {
     const [RateEquivalentMessage, setRateEquivalentMessage] = useState(null);
     const RateEquivalentMessages = ["I hate it", "I don't like it", "It's average", "I like it", "I love it"];
     const [rating, setRating] = useState(0);
-    const userRating = useSelector((state) => state.rateInfo)
-    console.log(rated);
-    console.log(userRating);
+    const userRating = useSelector((state) => state.rateInfo);
+    const userList = useSelector((state) => state.listInfo);
+    const ListIndexes = userList.map((item) => item.foodId);
     
     useEffect(() => {
         if (userRating.length > 0 && user)
@@ -95,6 +96,13 @@ const Food = () => {
         setRateClicked(false);
       }
 
+      const handleSubmitListAdd = () => {
+        if (!token)
+            navigate("/login");
+        else
+            ListIndexes.includes(foodData.id) ? dispatch(deleteListInfo(foodData.id)) : dispatch(setListInfo({"email": user.email, "foodId": foodData.id}))
+      }
+
     return (
         <Box>
             <Box display="flex" justifyContent="space-between" marginTop={5} m={2} p={1}>
@@ -126,7 +134,7 @@ const Food = () => {
                 </Box>
             </Box>
             <Box display="flex" justifyContent="space-between" marginX={12} marginY={5}>
-                <Box display="flex" flexDirection="column" width="60%">
+                <Box display="flex" flexDirection="column" width="100%">
                     <Typography variant='h1' marginBottom={2} style={{fontWeight: "200"}}>
                         {foodData.name}
                     </Typography>
@@ -174,6 +182,39 @@ const Food = () => {
                                     Ate it? Rate it
                                 </Typography>
                             )}
+                        </Button>
+                        <Button variant="contained" onClick={handleSubmitListAdd} sx={{
+                            backgroundColor: theme.palette.mode === "dark" ? "black" : "white",
+                            border: theme.palette.mode === "dark" ? "2px solid white" : "",
+                            height: "40px",
+                            margin: "0.5rem",
+                            textTransform: "none",
+                            color: theme.palette.mode === "dark" ? dark : "#111",
+                            "&:hover": {
+                            backgroundColor: theme.palette.mode === "dark" ? "white" : "#0062ff",
+                            color: theme.palette.mode === "dark" ? "black" : "white",
+                        }
+                        }
+                        
+                        }>
+                            {ListIndexes.includes(foodData.id) ? (
+                                <Box display="flex" flexDirection="row" marginTop={1}>
+                                <Box color={ theme.palette.mode === "light" ? "#00c742" : "#00ff44"}>
+                                    <CheckIcon/>
+                                </Box>    
+                                <Typography>
+                                    Added to list
+                                </Typography>
+                            </Box>
+                            ) : 
+                            (<Box display="flex" flexDirection="row" marginTop={1}>
+                                <Box>
+                                    <BookmarkBorderIcon/>
+                                </Box>    
+                                <Typography>
+                                    Add to list
+                                </Typography>
+                            </Box>)}
                         </Button>
                     </Typography>
                     {
