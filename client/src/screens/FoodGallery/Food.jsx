@@ -31,8 +31,14 @@ const Food = () => {
     const [rating, setRating] = useState(0);
     const userRating = useSelector((state) => state.rateInfo);
     const userList = useSelector((state) => state.listInfo);
-    const ListIndexes = userList.map((item) => item.foodId);
-    
+    //const ListIndexes = userList.map((item) => item.foodId);
+    const ListIndexes = [];
+    for (let i = 0; i < userList.length; i++)
+    {
+        if (userList[i].email === user.email)
+            ListIndexes.push(userList[i].foodId);
+    }
+    console.log(ListIndexes);
     useEffect(() => {
         if (userRating.length > 0 && user)
         {

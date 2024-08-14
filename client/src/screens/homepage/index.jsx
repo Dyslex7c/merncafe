@@ -146,7 +146,7 @@ const HomePage = () => {
                     </Typography>
                 </Box>
                 <Button
-                onClick={() => navigate("/menu")}
+                onClick={() => navigate("/food-gallery")}
                 sx={{
                     p: "0.5rem",
                     width: "200px",

@@ -10,6 +10,7 @@ import LocationPage from "screens/locationpage";
 import FoodPage from "screens/FoodGallery/Food";
 import LoginPage from "screens/loginPage";
 import ProfilePage from "screens/profilepage";
+import FoodGalleryPage from "screens/FoodGallery";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -27,6 +28,7 @@ function App() {
           <Route path="/menu" element={<MenuPage/>} />
           <Route path="/location" element={<LocationPage/>} />
           <Route path="/food-gallery/:food" element={<FoodPage/>} />
+          <Route path="/food-gallery" element={<FoodGalleryPage/>} />
           <Route path="/profile/:user" element={<ProfilePage/>} />
         </Routes>
       </ThemeProvider>
