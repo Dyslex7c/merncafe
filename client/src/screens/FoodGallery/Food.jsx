@@ -157,7 +157,9 @@ const Food = () => {
                         <Typography color="#ff8400" fontSize="1.2rem" m={1.3}>
                             {foodData.rating >= 1.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
                             {foodData.rating >= 2.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
+                            {foodData.rating > 2.0 && foodData.rating < 3.0 && <i class="bi bi-star-half" style={{marginRight: "3px"}}></i>}
                             {foodData.rating >= 3.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
+                            {foodData.rating > 3.0 && foodData.rating < 4.0 && <i class="bi bi-star-half" style={{marginRight: "3px"}}></i>}
                             {foodData.rating >= 4.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
                             {foodData.rating > 4.0 && foodData.rating < 5.0 && <i class="bi bi-star-half" style={{marginRight: "3px"}}></i>}
                             {foodData.rating === 5.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}                                                    
