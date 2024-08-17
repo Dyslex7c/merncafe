@@ -23,7 +23,7 @@ const ProfilePage = () => {
     const foodList = useSelector((state) => state.listInfo);
     const foodRate = useSelector((state) => state.rateInfo);
     const foodDataFull = foodData.concat(extendedFoodData);
-    console.log(foodRate);
+    console.log(foodDataFull);
     
     const foodIndexes = [];
     const rateIndexes = []
@@ -38,7 +38,8 @@ const ProfilePage = () => {
         if (foodRate[i].email === user.email)
             rateIndexes.push(foodRate[i].foodId);
     }
-
+    console.log(rateIndexes);
+    
     const [value, setValue] = React.useState('1');
 
     const handleChange = (event, newValue) => {
