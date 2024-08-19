@@ -252,14 +252,14 @@ const foodData = [
         "rating": 4.7
     },
     {
-        "id": "26",
-        "name": "Chicken 65",
-        "src": "chicken65.jpg",
-        "description": "Deep-fried chicken marinated in ginger, lemon, red chilli, and a variety of other spices",
-        "type": "Fried Chicken Dish, Deep-Fried Dish",
-        "path": "chicken-65",
-        "number": "1",
-        "query": "Chicken_65",
+        "id": "4",
+        "name": "Tandoori Chicken",
+        "src": "tchicken.jpg",
+        "description": "Chicken meat marinated in yogurt, seasoned with tandoori masala, nutmeg, and cumin, then cooked at high temperatures in clay ovens called tandoor",
+        "type": "Chicken Dish",
+        "path": "tandoori-chicken",
+        "number": "2",
+        "query": "Tandoori_chicken",
         "country": "ind",
         "countryName": "India",
         "category": "appetizer-chicken",
@@ -1039,6 +1039,7 @@ const foodData = [
         "id": "6",
         "name": "Seafood Paella",
         "src": "paella.jpg",
+        "description": "Saffron-flavored rice which includes meat, seafood, and vegetables with a crispy bottom layer",
         "type": "Rice Dish, Seafood",
         "path": "seafood-paella",
         "number": "2",
@@ -1190,7 +1191,7 @@ const foodData = [
     },
     {
         "id": "89",
-        "name": "Risotto al Funghi",
+        "name": "Risotto ai Funghi",
         "src": "mushrisotto.jpg",
         "description": "Sautéed Carnaroli rice in butter with mushrooms, parmesan cheese, finely chopped onions, and shallots",
         "type": "Rice Dish, Mushroom Dish",
@@ -1217,7 +1218,7 @@ const foodData = [
         "rating": 4.2
     },
     {
-        "id": "90",
+        "id": "91",
         "name": "Arroz Chaufa",
         "src": "arrozchaufa.jpg",
         "description": "Rice fried with shredded chicken, salami, garlic, ginger, slivered almonds, eggs, chicken stock, soy sauce, and pineapple chunks",

@@ -1,25 +1,129 @@
-import { Typography, Box, useTheme, Grid } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Typography, Box, useTheme, Grid, InputBase, IconButton } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { setFoodData } from 'state';
 import foodData from './extendedFoodData';
 
 const FoodGalleryPage = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const theme = useTheme();
+    const [search, setSearch] = useState("");
+    const [
+    vegAppetizer, 
+    soups, 
+    appetizerChicken, 
+    appetizerFish, 
+    appetizerLamb, 
+    appetizerSeafood, 
+    breakfastNonveg, 
+    breakfastVeg,
+    snacks,
+    maincourseRice
+    ] = useMemo(() => {
+    const [VA, S, AC, AF, AL, AS, ABN, ABV, SN, MCR] = Array.from({length: 10}, () => []);
+    foodData.map((item) => {
+        if (item.category === "veg-appetizer")
+            VA.push(item);
+        else if (item.category === "soup")
+            S.push(item);
+        else if (item.category === "appetizer-chicken")
+            AC.push(item);
+        else if (item.category === "appetizer-fish")
+            AF.push(item);
+        else if (item.category === "appetizer-lamb")
+            AL.push(item);
+        else if (item.category === "appetizer-seafood")
+            AS.push(item);
+        else if (item.category === "appetizer-breakfastnonveg")
+            ABN.push(item);
+        else if (item.category === "appetizer-breakfastveg")
+            ABV.push(item);
+        else if (item.category === "snacks")
+            SN.push(item);
+        else if (item.category === "maincourse-rice")
+            MCR.push(item);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const theme = useTheme();
+    })
+    return [VA, S, AC, AF, AL, AS, ABN, ABV, SN, MCR];
+  });
+
+  const VegAppetizer = vegAppetizer.filter((item) => {
+    return search.toLowerCase() === "" ? item : item.name.toLowerCase().includes(search.toLowerCase())
+  })
+  const Soups = soups.filter((item) => {
+    return search.toLowerCase() === "" ? item : item.name.toLowerCase().includes(search.toLowerCase())
+  })
+  const AppetizerChicken = appetizerChicken.filter((item) => {
+    return search.toLowerCase() === "" ? item : item.name.toLowerCase().includes(search.toLowerCase())
+  })
+  const AppetizerFish = appetizerFish.filter((item) => {
+    return search.toLowerCase() === "" ? item : item.name.toLowerCase().includes(search.toLowerCase())
+  })
+  const AppetizerLamb = appetizerLamb.filter((item) => {
+    return search.toLowerCase() === "" ? item : item.name.toLowerCase().includes(search.toLowerCase())
+  })
+  const AppetizerSeafood = appetizerSeafood.filter((item) => {
+    return search.toLowerCase() === "" ? item : item.name.toLowerCase().includes(search.toLowerCase())
+  })
+  const BreakfastNonveg = breakfastNonveg.filter((item) => {
+    return search.toLowerCase() === "" ? item : item.name.toLowerCase().includes(search.toLowerCase())
+  })
+  const BreakfastVeg = breakfastVeg.filter((item) => {
+    return search.toLowerCase() === "" ? item : item.name.toLowerCase().includes(search.toLowerCase())
+  })
+  const Snacks = snacks.filter((item) => {
+    return search.toLowerCase() === "" ? item : item.name.toLowerCase().includes(search.toLowerCase())
+  })
+  const MaincourseRice = maincourseRice.filter((item) => {
+    return search.toLowerCase() === "" ? item : item.name.toLowerCase().includes(search.toLowerCase())
+  })
+  
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+  }
   
   return (
     <Box marginTop={5}>
-    <Typography variant='h0' fontWeight="600" m={5} p={4}>
+        <Box m={5} marginLeft={9} sx={{
+            border: theme.palette.mode === "dark" ? "2px solid white" : "2px solid black",
+            bgcolor: theme.palette.mode === "dark" ? "black" : "white",
+            width: "650px"
+        }}>
+            <InputBase 
+            style={{
+                ".css-yz9k0d-MuiInputBase-input": {
+                    color: "black"
+                }
+            }}
+            sx={{
+                width: "600px",
+                height: "40px",
+                ".css-yz9k0d-MuiInputBase-input": {
+                    color: "black"
+                },
+                paddingLeft: "1rem",
+                fontSize: "1rem"
+            }} 
+            onChange={handleSearch}
+            placeholder='Search for dishes'/>
+            <IconButton>
+                <SearchIcon/>
+            </IconButton>
+        </Box>
+    {VegAppetizer.length > 0 && <Typography variant='h0' fontWeight="600" m={5} p={4}>
         Appetizers (Veg)
-    </Typography>
-    <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
+    </Typography>}
+    {VegAppetizer.length > 0 && <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
       <Grid container spacing={5}>
-              {foodData.map((item) => {
-                if (item.category === "veg-appetizer")
+              {VegAppetizer.map((item) => {
+                  console.log(item);
+                  
                   return (
                       <Grid item xs={4}>
                       <Box color="white" onClick={() => {
@@ -64,14 +168,13 @@ const FoodGalleryPage = () => {
                   )
               })}
           </Grid>
-  </Box>
-  <Typography variant='h0' fontWeight="600" m={5} p={4}>
+  </Box>}
+  {Soups.length > 0 && <Typography variant='h0' fontWeight="600" m={5} p={4}>
         Soups
-    </Typography>
-    <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
+    </Typography>}
+    {Soups.length > 0 && <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
       <Grid container spacing={5}>
-              {foodData.map((item) => {
-                if (item.category === "soup")
+              {Soups.map((item) => {
                   return (
                       <Grid item xs={4}>
                       <Box onClick={() => {
@@ -116,17 +219,16 @@ const FoodGalleryPage = () => {
                   )
               })}
           </Grid>
-  </Box>
-  <Typography variant='h0' fontWeight="600" m={5} p={4}>
+  </Box>}
+  {AppetizerChicken.length > 0 && <Box><Typography variant='h0' fontWeight="600" m={5} p={4}>
         Appetizers (Non-Veg)
     </Typography>
     <Typography variant='h0' fontWeight="600" m={5} p={4}>
         Chicken
-    </Typography>
-    <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
+    </Typography></Box>}
+    {AppetizerChicken.length > 0 && <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
       <Grid container spacing={5}>
-              {foodData.map((item) => {
-                if (item.category === "appetizer-chicken")
+              {AppetizerChicken.map((item) => {
                   return (
                       <Grid item xs={4}>
                       <Box onClick={() => {
@@ -171,17 +273,16 @@ const FoodGalleryPage = () => {
                   )
               })}
           </Grid>
-  </Box>
-  <Typography variant='h0' fontWeight="600" m={5} p={4}>
+  </Box>}
+  {AppetizerFish.length > 0 && <Box><Typography variant='h0' fontWeight="600" m={5} p={4}>
         Appetizers (Non-Veg)
     </Typography>
     <Typography variant='h0' fontWeight="600" m={5} p={4}>
         Fish
-    </Typography>
-    <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
+    </Typography></Box>}
+    {AppetizerFish.length > 0 && <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
       <Grid container spacing={5}>
-              {foodData.map((item) => {
-                if (item.category === "appetizer-fish")
+              {AppetizerFish.map((item) => {
                   return (
                       <Grid item xs={4}>
                       <Box onClick={() => {
@@ -226,17 +327,16 @@ const FoodGalleryPage = () => {
                   )
               })}
           </Grid>
-  </Box>
-  <Typography variant='h0' fontWeight="600" m={5} p={4}>
+  </Box>}
+  {AppetizerLamb.length > 0  && <Box><Typography variant='h0' fontWeight="600" m={5} p={4}>
         Appetizers (Non-Veg)
     </Typography>
     <Typography variant='h0' fontWeight="600" m={5} p={4}>
         Lamb
-    </Typography>
-    <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
+    </Typography></Box>}
+    {AppetizerLamb.length > 0 && <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
       <Grid container spacing={5}>
-              {foodData.map((item) => {
-                if (item.category === "appetizer-lamb")
+              {AppetizerLamb.map((item) => {
                   return (
                       <Grid item xs={4}>
                       <Box onClick={() => {
@@ -281,17 +381,16 @@ const FoodGalleryPage = () => {
                   )
               })}
           </Grid>
-  </Box>
-  <Typography variant='h0' fontWeight="600" m={5} p={4}>
+  </Box>}
+  {AppetizerSeafood.length > 0 && <Box><Typography variant='h0' fontWeight="600" m={5} p={4}>
         Appetizers (Non-Veg)
     </Typography>
     <Typography variant='h0' fontWeight="600" m={5} p={4}>
         Seafood
-    </Typography>
-    <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
+    </Typography></Box>}
+    {AppetizerSeafood.length > 0 && <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
       <Grid container spacing={5}>
-              {foodData.map((item) => {
-                if (item.category === "appetizer-seafood")
+              {AppetizerSeafood.map((item) => {
                   return (
                       <Grid item xs={4}>
                       <Box onClick={() => {
@@ -336,14 +435,13 @@ const FoodGalleryPage = () => {
                   )
               })}
           </Grid>
-  </Box>
-  <Typography variant='h0' fontWeight="600" m={5} p={4}>
+  </Box>}
+  {BreakfastNonveg.length > 0 && <Typography variant='h0' fontWeight="600" m={5} p={4}>
         Breakfast (Non-Veg)
-    </Typography>
-    <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
+    </Typography>}
+    {BreakfastNonveg.length > 0 && <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
       <Grid container spacing={5}>
-              {foodData.map((item) => {
-                if (item.category === "appetizer-breakfastnonveg")
+              {BreakfastNonveg.map((item) => {
                   return (
                       <Grid item xs={4}>
                       <Box onClick={() => {
@@ -388,14 +486,13 @@ const FoodGalleryPage = () => {
                   )
               })}
           </Grid>
-  </Box>
-  <Typography variant='h0' fontWeight="600" m={5} p={4}>
+  </Box>}
+  {BreakfastVeg.length > 0 &&<Typography variant='h0' fontWeight="600" m={5} p={4}>
         Breakfast (Veg)
-    </Typography>
-    <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
+    </Typography>}
+    {BreakfastVeg.length > 0 && <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
       <Grid container spacing={5}>
-              {foodData.map((item) => {
-                if (item.category === "appetizer-breakfastveg")
+              {BreakfastVeg.map((item) => {
                   return (
                       <Grid item xs={4}>
                       <Box onClick={() => {
@@ -440,14 +537,13 @@ const FoodGalleryPage = () => {
                   )
               })}
           </Grid>
-  </Box>
-  <Typography variant='h0' fontWeight="600" m={5} p={4}>
+  </Box>}
+  {Snacks.length > 0 && <Typography variant='h0' fontWeight="600" m={5} p={4}>
         Snacks
-    </Typography>
-    <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
+    </Typography>}
+    {Snacks.length > 0 && <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
       <Grid container spacing={5}>
-              {foodData.map((item) => {
-                if (item.category === "snacks")
+              {Snacks.map((item) => {
                   return (
                       <Grid item xs={4}>
                       <Box onClick={() => {
@@ -492,17 +588,16 @@ const FoodGalleryPage = () => {
                   )
               })}
           </Grid>
-  </Box>
-  <Typography variant='h0' fontWeight="600" m={5} p={4}>
+  </Box>}
+  {MaincourseRice.length > 0 && <Box><Typography variant='h0' fontWeight="600" m={5} p={4}>
         Main Course
     </Typography>
   <Typography variant='h0' fontWeight="600" m={5} p={4}>
         Rice
-    </Typography>
-    <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
+    </Typography></Box>}
+    {MaincourseRice.length > 0 && <Box m={5} p={4} marginTop={2} data-aos="fade-up" display="flex" width="90%">
       <Grid container spacing={5}>
-              {foodData.map((item) => {
-                if (item.category === "maincourse-rice")
+              {MaincourseRice.map((item) => {
                   return (
                       <Grid item xs={4}>
                       <Box onClick={() => {
@@ -547,7 +642,7 @@ const FoodGalleryPage = () => {
                   )
               })}
           </Grid>
-  </Box>
+  </Box>}
   </Box>
 )
 }

@@ -9,7 +9,6 @@ import TabList from '@mui/lab/TabList';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMode, setFoodData } from 'state';
-import foodData from 'screens/homepage/foodData';
 import extendedFoodData from 'screens/FoodGallery/extendedFoodData';
 
 const ProfilePage = () => {
@@ -22,8 +21,6 @@ const ProfilePage = () => {
     const user = useSelector((state) => state.user);
     const foodList = useSelector((state) => state.listInfo);
     const foodRate = useSelector((state) => state.rateInfo);
-    const foodDataFull = foodData.concat(extendedFoodData);
-    console.log(foodDataFull);
     
     const foodIndexes = [];
     const rateIndexes = []
@@ -144,7 +141,7 @@ const ProfilePage = () => {
                 <Box m={5}>
                 {value === "1" && <Grid container spacing={5}>
                     {
-                        foodDataFull.map((item) => {
+                        extendedFoodData.map((item) => {
                             if (foodIndexes.includes(item.id) )
                             {
                                 return (
@@ -183,7 +180,7 @@ const ProfilePage = () => {
                 </Grid>}
                 {value === "2" && <Grid container spacing={5}>
                     {
-                        foodDataFull.map((item) => {
+                        extendedFoodData.map((item) => {
                             if (rateIndexes.includes(item.id) )
                             {
                                 return (

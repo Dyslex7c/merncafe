@@ -68,6 +68,7 @@ const MenuPage = () => {
     const [focused, setFocused] = useState(false);
     const [reviewed, setReviewed] = useState(false);
     const [reviewMessage, setReviewMessage] = useState("");
+    const [reviewMessageWithHash, setReviewMessageWithHash] = useState(null);
     const user = useSelector((state) => state.user);
     const userReview = useSelector((state) => state.reviewInfo)
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -94,10 +95,16 @@ const MenuPage = () => {
             {
                 if (userReview[i].email === user.email)
                 {
-                    setReviewMessage(userReview[i].review)
+                    setReviewMessage(userReview[i].review);
                     setReviewed(true); 
                 }
             }
+            if (reviewMessage.includes("#"))
+                {
+                    const reviewHash = reviewMessage.split("#").slice(1, value.length - 1);
+                    setReviewMessage(reviewMessage.split("#")[0])
+                    setReviewMessageWithHash(reviewHash);
+                }
         }
     }, [userReview]);
     
@@ -124,11 +131,20 @@ const MenuPage = () => {
             if (user.email === userReview[i].email)
                 dispatch(deleteReviewInfo());
         }
+        if (value.includes("#"))
+            {
+                const reviewHash = value.split("#").slice(1, value.length - 1);
+                console.log(value);
+                
+                setReviewMessage(value.split("#")[0]);
+                setReviewMessageWithHash(reviewHash);
+                
+            }
         dispatch(setReviewInfo({"email": user.email, "review": value}));
     }
 
     const handleReviewEdit = (event) => {
-        setValue(reviewMessage);
+        setValue(reviewMessage)
         setReviewed(false);
         setFocused(true);
         setAnchorEl(null);
@@ -148,6 +164,9 @@ const MenuPage = () => {
         setFocused(false);
         setAnchorEl(null);
     }
+
+    console.log(reviewMessageWithHash);
+    
  
     useEffect(() => {
         AOS.init({duration: 1600});
@@ -353,9 +372,13 @@ const MenuPage = () => {
                 </Box>
             )}
             </FormControl> </Box>)}
-            {reviewed && <Typography variant='h7' style={{fontStyle: "italic", fontWeight: "400"}}>
-                "{reviewMessage}"
-            </Typography>}
+            {reviewed && <Box><Typography variant='h7' style={{fontStyle: "italic", fontWeight: "400"}}>
+                "{reviewMessage.split("#")[0]}"
+            </Typography>{reviewMessageWithHash && <Typography variant='h7' style={{fontStyle: "italic", fontWeight: "400", color: "blue"}}>
+                {reviewMessageWithHash.map((message) => {
+                    return "#" + message
+                })}
+            </Typography>}</Box>}
             </Box>
         <Box display="flex" flexDirection="column" alignItems="center" width="100%" marginTop={10}>
                 <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2023 © Title™ Ltd. All rights reserved.</Typography>
