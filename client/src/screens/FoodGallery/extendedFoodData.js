@@ -11,6 +11,7 @@ const foodData = [
         "country": "ita",
         "countryName": "Italy",
         "category": "veg-appetizer",
+        "price": 56.47,
         "rating": 4.2
     },
     {
@@ -25,6 +26,7 @@ const foodData = [
         "country": "tur",
         "countryName": "Turkey",
         "category": "veg-appetizer",
+        "price": 58.79,
         "rating": 4.1
     },
     {
@@ -39,6 +41,7 @@ const foodData = [
         "country": "mex",
         "countryName": "Mexico",
         "category": "veg-appetizer",
+        "price": 42.10,
         "rating": 4.5
     },
     {
@@ -53,6 +56,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "veg-appetizer",
+        "price": 27.88,
         "rating": 3.8
     },
     {
@@ -67,6 +71,7 @@ const foodData = [
         "country": "ita",
         "countryName": "Italy",
         "category": "veg-appetizer",
+        "price": 85.49,
         "rating": 4.2
     },
     {
@@ -81,6 +86,7 @@ const foodData = [
         "country": "spa",
         "countryName": "Spain",
         "category": "soup",
+        "price": 74.99,
         "rating": 3.7
     },
     {
@@ -95,6 +101,7 @@ const foodData = [
         "country": "ita",
         "countryName": "Italy",
         "category": "soup",
+        "price": 52.36,
         "rating": 4.0
     },
     {
@@ -109,6 +116,7 @@ const foodData = [
         "country": "cze",
         "countryName": "Czech Republic",
         "category": "soup",
+        "price": 41.38,
         "rating": 4.1
     },
     {
@@ -123,6 +131,7 @@ const foodData = [
         "country": "fra",
         "countryName": "France",
         "category": "soup",
+        "price": 157.94,
         "rating": 4.2
     },
     {
@@ -137,6 +146,7 @@ const foodData = [
         "country": "jpn",
         "countryName": "Japan",
         "category": "soup",
+        "price": 126.58,
         "rating": 4.1
     },
     {
@@ -151,6 +161,7 @@ const foodData = [
         "country": "ukr",
         "countryName": "Ukraine",
         "category": "soup",
+        "price": 83.41,
         "rating": 4.3
     },
     {
@@ -165,6 +176,7 @@ const foodData = [
         "country": "mex",
         "countryName": "Mexico",
         "category": "soup",
+        "price": 101.55,
         "rating": 4.6
     },
     {
@@ -179,6 +191,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "soup",
+        "price": 59.03,
         "rating": 4.2
     },
     {
@@ -193,6 +206,7 @@ const foodData = [
         "country": "fra",
         "countryName": "France",
         "category": "soup",
+        "price": 140.67,
         "rating": 4.3
     },
     {
@@ -207,6 +221,7 @@ const foodData = [
         "country": "per",
         "countryName": "Peru",
         "category": "soup",
+        "price": 103.72,
         "rating": 4.1
     },
     {
@@ -221,6 +236,7 @@ const foodData = [
         "country": "chn",
         "countryName": "China",
         "category": "appetizer-chicken",
+        "price": 85.76,
         "rating": 4.2
     },
     {
@@ -235,6 +251,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "appetizer-chicken",
+        "price": 115.90,
         "rating": 4.0
     },
     {
@@ -249,6 +266,7 @@ const foodData = [
         "country": "kor",
         "countryName": "South Korea",
         "category": "appetizer-chicken",
+        "price": 98.33,
         "rating": 4.7
     },
     {
@@ -263,6 +281,7 @@ const foodData = [
         "country": "ind",
         "countryName": "India",
         "category": "appetizer-chicken",
+        "price": 200.29,
         "rating": 4.4
     },
     {
@@ -277,6 +296,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "appetizer-chicken",
+        "price": 126.32,
         "rating": 4.1
     },
     {
@@ -291,6 +311,7 @@ const foodData = [
         "country": "rus",
         "countryName": "Russia",
         "category": "appetizer-chicken",
+        "price": 138.75,
         "rating": 4.2
     },
     {
@@ -305,6 +326,7 @@ const foodData = [
         "country": "srb",
         "countryName": "Serbia",
         "category": "appetizer-chicken",
+        "price": 159.53,
         "rating": 4.5
     },
     {
@@ -319,6 +341,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "appetizer-chicken",
+        "price": 270.00,
         "rating": 5.0
     },
     {
@@ -333,6 +356,7 @@ const foodData = [
         "country": "uk",
         "countryName": "United Kingdom",
         "category": "appetizer-fish",
+        "price": 100,
         "rating": 4.0
     },
     {
@@ -347,6 +371,7 @@ const foodData = [
         "country": "nor",
         "countryName": "Norway",
         "category": "appetizer-fish",
+        "price": 134.55,
         "rating": 2.5
     },
     {
@@ -361,6 +386,7 @@ const foodData = [
         "country": "prt",
         "countryName": "Portugal",
         "category": "appetizer-fish",
+        "price": 66.84,
         "rating": 4.0
     },
     {
@@ -375,6 +401,7 @@ const foodData = [
         "country": "jpn",
         "countryName": "Japan",
         "category": "appetizer-fish",
+        "price": 210.47,
         "rating": 4.0
     },
     {
@@ -389,6 +416,7 @@ const foodData = [
         "country": "fra",
         "countryName": "France",
         "category": "appetizer-fish",
+        "price": 120.95,
         "rating": 4.2
     },
     {
@@ -403,6 +431,7 @@ const foodData = [
         "country": "ita",
         "countryName": "Italy",
         "category": "appetizer-fish",
+        "price": 87.22,
         "rating": 4.0
     },
     {
@@ -417,6 +446,7 @@ const foodData = [
         "country": "twn",
         "countryName": "Taiwan",
         "category": "appetizer-fish",
+        "price": 117.51,
         "rating": 3.1
     },
     {
@@ -431,6 +461,7 @@ const foodData = [
         "country": "pol",
         "countryName": "Poland",
         "category": "appetizer-fish",
+        "price": 60.54,
         "rating": 3.8
     },
     {
@@ -445,6 +476,7 @@ const foodData = [
         "country": "aze",
         "countryName": "Azerbaijan",
         "category": "appetizer-fish",
+        "price": 157.29,
         "rating": 3.8
     },
     {
@@ -459,6 +491,7 @@ const foodData = [
         "country": "tur",
         "countryName": "Turkey",
         "category": "appetizer-lamb",
+        "price": 156.84,
         "rating": 4.5
     },
     {
@@ -473,6 +506,7 @@ const foodData = [
         "country": "grc",
         "countryName": "Greece",
         "category": "appetizer-lamb",
+        "price": 113.80,
         "rating": 4.6
     },
     {
@@ -487,6 +521,7 @@ const foodData = [
         "country": "ita",
         "countryName": "Italy",
         "category": "appetizer-lamb",
+        "price": 92.17,
         "rating": 4.3
     },
     {
@@ -501,6 +536,7 @@ const foodData = [
         "country": "tur",
         "countryName": "Turkey",
         "category": "appetizer-lamb",
+        "price": 120.36,
         "rating": 4.5
     },
     {
@@ -515,6 +551,7 @@ const foodData = [
         "country": "gb-wls",
         "countryName": "Wales",
         "category": "appetizer-lamb",
+        "price": 153.69,
         "rating": 4.2
     },
     {
@@ -529,6 +566,7 @@ const foodData = [
         "country": "rsa",
         "countryName": "South Africa",
         "category": "appetizer-lamb",
+        "price": 99.06,
         "rating": 4.1
     },
     {
@@ -543,6 +581,7 @@ const foodData = [
         "country": "ind",
         "countryName": "India",
         "category": "appetizer-lamb",
+        "price": 85.63,
         "rating": 4.4
     },
     {
@@ -557,6 +596,7 @@ const foodData = [
         "country": "nzl",
         "countryName": "New Zealand",
         "category": "appetizer-lamb",
+        "price": 174.99,
         "rating": 4.6
     },
     {
@@ -571,6 +611,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "appetizer-seafood",
+        "price": 79.42,
         "rating": 4.1
     },
     {
@@ -585,6 +626,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "appetizer-seafood",
+        "price": 140.53,
         "rating": 3.9
     },
     {
@@ -599,6 +641,7 @@ const foodData = [
         "country": "jpn",
         "countryName": "Japan",
         "category": "appetizer-seafood",
+        "price": 278.39,
         "rating": 4.3
     },
     {
@@ -613,6 +656,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "appetizer-seafood",
+        "price": 167.44,
         "rating": 4.4
     },
     {
@@ -627,6 +671,7 @@ const foodData = [
         "country": "jpn",
         "countryName": "Japan",
         "category": "appetizer-seafood",
+        "price": 256.90,
         "rating": 4.4
     },
     {
@@ -641,6 +686,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "appetizer-seafood",
+        "price": 205.00,
         "rating": 4.0
     },
     {
@@ -655,6 +701,7 @@ const foodData = [
         "country": "fra",
         "countryName": "France",
         "category": "appetizer-seafood",
+        "price": 191.68,
         "rating": 3.6
     },
     {
@@ -669,6 +716,7 @@ const foodData = [
         "country": "aus",
         "countryName": "Australia",
         "category": "appetizer-seafood",
+        "price": 249.01,
         "rating": 4.4
     },
     {
@@ -683,6 +731,7 @@ const foodData = [
         "country": "ita",
         "countryName": "Italy",
         "category": "appetizer-breakfastnonveg",
+        "price": 78.51,
         "rating": 3.7
     },
     {
@@ -697,6 +746,7 @@ const foodData = [
         "country": "mex",
         "countryName": "Mexico",
         "category": "appetizer-breakfastnonveg",
+        "price": 94.13,
         "rating": 4.1
     },
     {
@@ -711,6 +761,7 @@ const foodData = [
         "country": "tun",
         "countryName": "Tunisia",
         "category": "appetizer-breakfastnonveg",
+        "price": 68.57,
         "rating": 4.3
     },
     {
@@ -725,6 +776,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "appetizer-breakfastnonveg",
+        "price": 71.88,
         "rating": 4.3
     },
     {
@@ -739,6 +791,7 @@ const foodData = [
         "country": "bih",
         "countryName": "Bosnia and Herzegovina",
         "category": "appetizer-breakfastnonveg",
+        "price": 93.04,
         "rating": 4.3
     },
     {
@@ -753,6 +806,7 @@ const foodData = [
         "country": "lbn",
         "countryName": "Lebanon",
         "category": "appetizer-breakfastnonveg",
+        "price": 98.16,
         "rating": 4.4
     },
     {
@@ -767,6 +821,7 @@ const foodData = [
         "country": "deu",
         "countryName": "Germany",
         "category": "appetizer-breakfastnonveg",
+        "price": 81.25,
         "rating": 3.8
     },
     {
@@ -781,6 +836,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "appetizer-breakfastnonveg",
+        "price": 110.76,
         "rating": 3.9
     },
     {
@@ -795,6 +851,7 @@ const foodData = [
         "country": "fra",
         "countryName": "France",
         "category": "appetizer-breakfastveg",
+        "price": 111.77,
         "rating": 4.5
     },
     {
@@ -809,6 +866,7 @@ const foodData = [
         "country": "col",
         "countryName": "Colombia",
         "category": "appetizer-breakfastveg",
+        "price": 58.96,
         "rating": 4.2
     },
     {
@@ -823,6 +881,7 @@ const foodData = [
         "country": "tur",
         "countryName": "Turkey",
         "category": "appetizer-breakfastveg",
+        "price": 69.53,
         "rating": 4.3
     },
     {
@@ -837,6 +896,7 @@ const foodData = [
         "country": "spa",
         "countryName": "Spain",
         "category": "appetizer-breakfastveg",
+        "price": 72.30,
         "rating": 4.1
     },
     {
@@ -851,6 +911,7 @@ const foodData = [
         "country": "arg",
         "countryName": "Argentina",
         "category": "appetizer-breakfastveg",
+        "price": 88.36,
         "rating": 4.2
     },
     {
@@ -865,6 +926,7 @@ const foodData = [
         "country": "ind",
         "countryName": "India",
         "category": "appetizer-breakfastveg",
+        "price": 44.35,
         "rating": 3.8
     },
     {
@@ -879,6 +941,7 @@ const foodData = [
         "country": "rus",
         "countryName": "Russia",
         "category": "appetizer-breakfastveg",
+        "price": 95.63,
         "rating": 4.4
     },
     {
@@ -893,6 +956,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "appetizer-breakfastveg",
+        "price": 48.29,
         "rating": 3.8
     },
     {
@@ -907,6 +971,7 @@ const foodData = [
         "country": "mex",
         "countryName": "Mexico",
         "category": "snacks",
+        "price": 107.85,
         "rating": 4.1
     },
     {
@@ -921,6 +986,7 @@ const foodData = [
         "country": "chn",
         "countryName": "China",
         "category": "snacks",
+        "price": 61.30,
         "rating": 4.1
     },
     {
@@ -935,6 +1001,7 @@ const foodData = [
         "country": "isr",
         "countryName": "Israel",
         "category": "snacks",
+        "price": 79.24,
         "rating": 4.1
     },
     {
@@ -949,6 +1016,7 @@ const foodData = [
         "country": "can",
         "countryName": "Canada",
         "category": "snacks",
+        "price": 93.62,
         "rating": 4.2
     },
     {
@@ -963,6 +1031,7 @@ const foodData = [
         "country": "vnm",
         "countryName": "Vietnam",
         "category": "snacks",
+        "price": 64.98,
         "rating": 4.2
     },
     {
@@ -977,6 +1046,7 @@ const foodData = [
         "country": "sau",
         "countryName": "Saudi Arabia",
         "category": "snacks",
+        "price": 114.83,
         "rating": 4.5
     },
     {
@@ -991,6 +1061,7 @@ const foodData = [
         "country": "ita",
         "countryName": "Italy",
         "category": "snacks",
+        "price": 75.16,
         "rating": 4.4
     },
     {
@@ -1005,6 +1076,7 @@ const foodData = [
         "country": "usa",
         "countryName": "United States of America",
         "category": "snacks",
+        "price": 46.21,
         "rating": 4.0
     },
     {
@@ -1019,6 +1091,7 @@ const foodData = [
         "country": "ind",
         "countryName": "India",
         "category": "maincourse-rice",
+        "price": 100,
         "rating": 4.2
     },
     {
@@ -1033,6 +1106,7 @@ const foodData = [
         "country": "chn",
         "countryName": "China",
         "category": "maincourse-rice",
+        "price": 100,
         "rating": 4.4
     },
     {
@@ -1047,6 +1121,7 @@ const foodData = [
         "country": "spa",
         "countryName": "Spain",
         "category": "maincourse-rice",
+        "price": 329.37,
         "rating": 4.3
     },
     {
@@ -1061,6 +1136,7 @@ const foodData = [
         "country": "idn",
         "countryName": "Indonesia",
         "category": "maincourse-rice",
+        "price": 304.58,
         "rating": 4.3
     },
     {
@@ -1075,6 +1151,7 @@ const foodData = [
         "country": "mys",
         "countryName": "Malaysia",
         "category": "maincourse-rice",
+        "price": 282.31,
         "rating": 4.2
     },
     {
@@ -1089,6 +1166,7 @@ const foodData = [
         "country": "yem",
         "countryName": "Yemen",
         "category": "maincourse-rice",
+        "price": 100,
         "rating": 3.7
     },
     {
@@ -1103,6 +1181,7 @@ const foodData = [
         "country": "sgp",
         "countryName": "Singapore",
         "category": "maincourse-rice",
+        "price": 400.00,
         "rating": 4.1
     },
     {
@@ -1117,6 +1196,7 @@ const foodData = [
         "country": "bra",
         "countryName": "Brazil",
         "category": "maincourse-rice",
+        "price": 352.00,
         "rating": 3.9
     },
     {
@@ -1131,6 +1211,7 @@ const foodData = [
         "country": "bgd",
         "countryName": "Bangladesh",
         "category": "maincourse-rice",
+        "price": 360.40,
         "rating": 4.2
     },
     {
@@ -1145,6 +1226,7 @@ const foodData = [
         "country": "nga",
         "countryName": "Nigeria",
         "category": "maincourse-rice",
+        "price": 204.57,
         "rating": 4.3
     },
     {
@@ -1159,6 +1241,7 @@ const foodData = [
         "country": "tha",
         "countryName": "Thailand",
         "category": "maincourse-rice",
+        "price": 375.00,
         "rating": 4.3
     },
     {
@@ -1173,6 +1256,7 @@ const foodData = [
         "country": "uzb",
         "countryName": "Uzbekistan",
         "category": "maincourse-rice",
+        "price": 264.97,
         "rating": 4.1
     },
     {
@@ -1187,6 +1271,7 @@ const foodData = [
         "country": "chl",
         "countryName": "Chile",
         "category": "maincourse-rice",
+        "price": 340.50,
         "rating": 3.6
     },
     {
@@ -1201,6 +1286,7 @@ const foodData = [
         "country": "ita",
         "countryName": "Italy",
         "category": "maincourse-rice",
+        "price": 405.60,
         "rating": 4.2
     },
     {
@@ -1215,6 +1301,7 @@ const foodData = [
         "country": "kor",
         "countryName": "South Korea",
         "category": "maincourse-rice",
+        "price": 347.00,
         "rating": 4.2
     },
     {
@@ -1229,6 +1316,7 @@ const foodData = [
         "country": "per",
         "countryName": "Peru",
         "category": "maincourse-rice",
+        "price": 358.11,
         "rating": 4.3
     },
 ]

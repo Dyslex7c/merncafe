@@ -106,7 +106,7 @@ const Food = () => {
         if (!token)
             navigate("/login");
         else
-            ListIndexes.includes(foodData.id) ? dispatch(deleteListInfo(foodData.id)) : dispatch(setListInfo({"email": user.email, "foodId": foodData.id}))
+            ListIndexes.includes(foodData.id) ? dispatch(deleteListInfo(foodData.id)) : dispatch(setListInfo({"email": user.email, "foodId": foodData.id, "price": foodData.price}))
       }
 
     return (

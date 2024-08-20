@@ -23,20 +23,26 @@ const ProfilePage = () => {
     const foodRate = useSelector((state) => state.rateInfo);
     
     const foodIndexes = [];
-    const rateIndexes = []
+    const rateIndexes = [];
+    const prices = [];
     for (let i = 0; i<foodList.length; i++)
     {  
         if (foodList[i].email === user.email)
+        {
             foodIndexes.push(foodList[i].foodId);
+            prices.push(foodList[i].price);
+        }
     }
 
+    console.log(foodList);
+    const totalPrice = prices.reduce((pv, cv) => pv+cv, 0)
+    
     for (let i = 0; i<foodRate.length; i++)
     {  
         if (foodRate[i].email === user.email)
             rateIndexes.push(foodRate[i].foodId);
     }
-    console.log(rateIndexes);
-    
+
     const [value, setValue] = React.useState('1');
 
     const handleChange = (event, newValue) => {
