@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Typography, Box, Button, useTheme, IconButton, Grid, Select, MenuItem, FormControl } from '@mui/material'
+import LogoutIcon from '@mui/icons-material/Logout';
 import { DarkMode, LightMode, Mail, Phone } from '@mui/icons-material';
 import InputLabel from "@mui/material/InputLabel";
 import Tooltip from '@mui/material/Tooltip';
@@ -73,7 +74,12 @@ const HomePage = () => {
                                     {user.firstName}
                                 </Typography>
                             </MenuItem>
-                            <MenuItem onClick={() => {dispatch(setLogout()); navigate("/login")} }>Log Out</MenuItem>
+                            <MenuItem onClick={() => {dispatch(setLogout()); navigate("/login")} }>Log Out
+                            <LogoutIcon sx={{
+                                marginLeft: "3.5rem"
+                            }}/>
+                            </MenuItem>
+                            
                         </Select>
                     </FormControl>) : (
                         <Button variant="contained" onClick={() => navigate("/login")} sx={{
