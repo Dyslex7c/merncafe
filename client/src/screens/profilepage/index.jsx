@@ -225,6 +225,12 @@ const ProfilePage = () => {
                 </Grid>}
                 </Box>
             </Box>
+            <Typography>
+                {totalPrice}
+            </Typography>
+            <form action='http://localhost:3001/pay' method='post'>
+                <input type='submit' value="buy"/>
+            </form>
         </Box>
   )
 }

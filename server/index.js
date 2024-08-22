@@ -9,6 +9,7 @@ import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
+import createOrder from "./services/paypal.js";
 import { register } from "./controllers/auth.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -50,6 +51,19 @@ const upload = multer({storage});
 app.post("/auth/register", upload.single("picture"), register);
 
 app.use("/auth", authRoutes);
+
+app.post("/pay", async(req, res) => {
+    try {
+        const url = await createOrder();
+        res.redirect(url);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+
+app.get("/cancel-order", (req, res) => {
+    res.redirect("http://localhost:3000/");
+})
 
 const PORT = process.env.PORT || 6001;
 mongoose.connect(process.env.MONGO_URL).then(() => {
