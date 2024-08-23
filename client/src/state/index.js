@@ -7,7 +7,8 @@ const initialState = {
     foodData: null,
     rateInfo: [],
     reviewInfo: [],
-    listInfo: []
+    listInfo: [],
+    totalPrice: 0
 }
 
 export const authSlice = createSlice({
@@ -54,12 +55,15 @@ export const authSlice = createSlice({
         deleteListInfo: (state, action) => {
             const idx = state.listInfo.findIndex((list) => list.email === state.user.email && list.foodId === action.payload);
             state.listInfo.splice(idx, 1);
+        },
+        setTotalPrice: (state, action) => {
+            state.totalPrice = action.payload;
         }
     }
 })
 
 export const { setMode, setFoodData, setLogin, setLogout, setRateInfo, refreshRateInfo, setReviewInfo, refreshReviewInfo,
-    deleteReviewInfo, deleteRateInfo, setListInfo, deleteListInfo
+    deleteReviewInfo, deleteRateInfo, setListInfo, deleteListInfo, setTotalPrice
  } =
   authSlice.actions;
 export default authSlice.reducer;

@@ -11,6 +11,8 @@ import FoodPage from "screens/FoodGallery/Food";
 import LoginPage from "screens/loginPage";
 import ProfilePage from "screens/profilepage";
 import FoodGalleryPage from "screens/FoodGallery";
+import CancelPage from "./screens/cancelPaymentPage";
+import CompletePaymentPage from "screens/completePayment";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -30,6 +32,8 @@ function App() {
           <Route path="/food-gallery/:food" element={<FoodPage/>} />
           <Route path="/food-gallery" element={<FoodGalleryPage/>} />
           <Route path="/profile/:user" element={<ProfilePage/>} />
+          <Route path="/cancel-order" element={<CancelPage/>} />
+          <Route path="/complete-order" element={<CompletePaymentPage/>} />
         </Routes>
       </ThemeProvider>
       </BrowserRouter>

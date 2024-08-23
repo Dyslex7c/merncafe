@@ -8,8 +8,9 @@ import TabList from '@mui/lab/TabList';
 //import TabPanel from '@mui/lab/TabPanel';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMode, setFoodData } from 'state';
+import { setMode, setFoodData, setTotalPrice } from 'state';
 import extendedFoodData from 'screens/FoodGallery/extendedFoodData';
+import axios from 'axios';
 
 const ProfilePage = () => {
 
@@ -34,8 +35,10 @@ const ProfilePage = () => {
         }
     }
 
+
     console.log(foodList);
-    const totalPrice = prices.reduce((pv, cv) => pv+cv, 0)
+    const Price = prices.reduce((pv, cv) => pv+cv, 0)
+    const totalPrice = Math.round((Price + Number.EPSILON)*100)/100;
     
     for (let i = 0; i<foodRate.length; i++)
     {  
@@ -48,6 +51,18 @@ const ProfilePage = () => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const handleSubmit = (event) => {
+        dispatch(setTotalPrice(totalPrice));
+
+        try {
+            axios.post("http://localhost:3001/", {totalPrice})
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
     
     return (
         <Box>
@@ -225,12 +240,52 @@ const ProfilePage = () => {
                 </Grid>}
                 </Box>
             </Box>
-            <Typography>
-                {totalPrice}
-            </Typography>
-            <form action='http://localhost:3001/pay' method='post'>
-                <input type='submit' value="buy"/>
-            </form>
+            <Box>
+                <Typography variant='h1' m={2}>
+                    Lists Breakdown
+                </Typography>
+                {
+                    extendedFoodData.map((item) => {
+                        if (foodIndexes.includes(item.id) ) {
+                            return (
+                                <Box m={2}>
+                                <Box width="30%" display="flex" flexDirection="row" justifyContent="space-between">
+                                    <Typography variant='h7'>
+                                        {item.name}
+                                    </Typography>
+                                    <Typography variant='h7'>
+                                        $ {item.price}
+                                    </Typography>
+                                </Box>
+                                </Box>
+                            )
+                        }
+                    })
+                }
+                <Box m={2}>
+                <Box width="30%" display="flex" flexDirection="row" justifyContent="space-between" borderTop={`2px solid ${theme.palette.mode === "dark" ? "white" : "black"}`} paddingTop={2}>
+                    <Typography variant='h7'>
+                        Grand Total
+                    </Typography>
+                    <Typography variant='h7'>
+                        $ {totalPrice}
+                    </Typography>
+                </Box>
+                </Box>
+            </Box>
+            <Box m={2}>
+                <form action='http://localhost:3001/pay' method='post'>
+                    <input type='submit' style={{
+                        width: "225px",
+                        height: "40px",
+                        backgroundColor: "#005eff",
+                        border: "1px solid white",
+                        borderRadius: "4px",
+                        color: "white",
+                        fontStyle: "italic"
+                    }} onClick={handleSubmit} value="CONTINUE TO PAY WITH PAYPAL"/>
+                </form>
+            </Box>
         </Box>
   )
 }

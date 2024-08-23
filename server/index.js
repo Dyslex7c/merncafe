@@ -61,8 +61,8 @@ app.post("/pay", async(req, res) => {
     }
 })
 
-app.get("/cancel-order", (req, res) => {
-    res.redirect("http://localhost:3000/");
+app.post("/", async(req, res) => {
+    global.totalPrice = req.body;
 })
 
 const PORT = process.env.PORT || 6001;

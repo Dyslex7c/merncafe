@@ -12,7 +12,7 @@ async function generateAccessToken() {
             password: process.env.PAYPAL_SECRET
         }
     })
-
+    console.log(global.totalPrice);
     return response.data.access_token
     
 }
@@ -37,17 +37,17 @@ const createOrder = async () => {
                             quantity: 1,
                             unit_amount: {
                                 currency_code: "USD",
-                                value: "100.00"
+                                value: global.totalPrice.totalPrice
                             }
                         }
                     ],
                     amount: {
                         currency_code: "USD",
-                        value: "100.00",
+                        value: global.totalPrice.totalPrice,
                         breakdown: {
                             item_total: {
                                 currency_code: "USD",
-                                value: "100.00"
+                                value: global.totalPrice.totalPrice
                             }
                         }
                     }
@@ -61,6 +61,7 @@ const createOrder = async () => {
             }
         })
     })
+    console.log(global.totalPrice);
     return response.data.links.find(link => link.rel === "approve").href;
     
 }
