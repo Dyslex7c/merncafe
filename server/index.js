@@ -62,7 +62,9 @@ app.post("/pay", async(req, res) => {
 })
 
 app.post("/", async(req, res) => {
-    global.totalPrice = req.body;
+    global.priceBreakdown = req.body;
+    console.log(global.priceBreakdown);
+    
 })
 
 const PORT = process.env.PORT || 6001;

@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMode, setFoodData, setTotalPrice } from 'state';
 import extendedFoodData from 'screens/FoodGallery/extendedFoodData';
 import axios from 'axios';
+import "./profile.css"
 
 const ProfilePage = () => {
 
@@ -26,25 +27,28 @@ const ProfilePage = () => {
     const foodIndexes = [];
     const rateIndexes = [];
     const prices = [];
+    const priceBreakdown = [];
     for (let i = 0; i<foodList.length; i++)
     {  
         if (foodList[i].email === user.email)
         {
             foodIndexes.push(foodList[i].foodId);
             prices.push(foodList[i].price);
+            priceBreakdown.push({"name": foodList[i].name, "price": foodList[i].price});
         }
     }
 
-
-    console.log(foodList);
-    const Price = prices.reduce((pv, cv) => pv+cv, 0)
+    const Price = prices.reduce((pv, cv) => pv+cv, 0);
     const totalPrice = Math.round((Price + Number.EPSILON)*100)/100;
+    priceBreakdown.push({"totalPrice": totalPrice});
+    console.log(prices);
+    
     
     for (let i = 0; i<foodRate.length; i++)
     {  
         if (foodRate[i].email === user.email)
             rateIndexes.push(foodRate[i].foodId);
-    }
+    }    
 
     const [value, setValue] = React.useState('1');
 
@@ -54,9 +58,9 @@ const ProfilePage = () => {
 
     const handleSubmit = (event) => {
         dispatch(setTotalPrice(totalPrice));
-
+        
         try {
-            axios.post("http://localhost:3001/", {totalPrice})
+            axios.post("http://localhost:3001/", {priceBreakdown})
         }
         catch(err){
             console.log(err);
@@ -98,7 +102,7 @@ const ProfilePage = () => {
             display="flex" 
             flexDirection="row" 
             justifyContent="space-evenly"
-            border={`2px solid ${theme.palette.mode === "dark" ? "white" : "black" }`} 
+            //border={`2px solid ${theme.palette.mode === "dark" ? "white" : "black" }`} 
             boxShadow={`5px 10px 12px 1px ${theme.palette.mode === "dark" ? "white" : "black" }`}
             >
                 <img 
@@ -119,7 +123,7 @@ const ProfilePage = () => {
             display="flex"
             flexDirection="column" 
             width="60%"
-            border={`2px solid ${theme.palette.mode === "dark" ? "white" : "black" }`} 
+            //border={`2px solid ${theme.palette.mode === "dark" ? "white" : "black" }`} 
             boxShadow={`5px 10px 12px 1px ${theme.palette.mode === "dark" ? "white" : "black" }`}
             >
                 <Box display="flex" flexDirection="column" width="100%" alignItems="center">
@@ -129,11 +133,11 @@ const ProfilePage = () => {
                     <Box marginTop={2} display="flex" flexDirection="row" width="100%" justifyContent="space-evenly">
                         <Box display="flex" flexDirection="column" width="100%" alignItems="center">
                             <Typography variant='h7'>{foodIndexes.length}</Typography>
-                            <Typography variant='h7'>DISH</Typography>
+                            <Typography variant='h7'>LISTED</Typography>
                         </Box>
                         <Box display="flex" flexDirection="column" width="100%" alignItems="center" borderLeft={`1px solid ${theme.palette.mode === "dark" ? "white" : "black"}`}>
-                            <Typography variant='h7'>0</Typography>
-                            <Typography variant='h7'>DISH</Typography>
+                            <Typography variant='h7'>{rateIndexes.length}</Typography>
+                            <Typography variant='h7'>RATED</Typography>
                         </Box>
                         <Box display="flex" flexDirection="column" width="100%" alignItems="center" borderRight={`1px solid ${theme.palette.mode === "dark" ? "white" : "black"}`} borderLeft={`1px solid ${theme.palette.mode === "dark" ? "white" : "black"}`}>
                             <Typography variant='h7'>0</Typography>
@@ -159,28 +163,31 @@ const ProfilePage = () => {
                     </Box>
                 </TabContext>
                 </Box>
-                <Box m={5}>
+                <Box display="flex" flexDirection="row">
+                <Box m={5} width="60%">
                 {value === "1" && <Grid container spacing={5}>
                     {
                         extendedFoodData.map((item) => {
                             if (foodIndexes.includes(item.id) )
                             {
                                 return (
-                                    <Grid item xs={3}>
+                                    <Grid item xs={12}>
                                 <Box onClick={() => {
                                     dispatch(setFoodData(item))
                                     navigate(`/food-gallery/${item.path}`)
                                 }
-                                    } height={260} bgcolor="rgb(255,255,255,0.3)" borderRadius={3} boxShadow="5px 10px 12px 1px black" className="foodcard" style={{cursor: "pointer"}}>
-                                    <img width="100%" src={require(`../../components/images/${item.src}`)}/>
-                                    <Box width="90%" display="flex" justifyContent="space-between" marginLeft={1} style={{textShadow: "0px 0px 10px white"}}>
-                                        <Typography variant='h5' fontWeight="400" display="flex" flexDirection="column">
+                                    }
+                                    display="flex" flexDirection="row"
+                                    bgcolor="rgb(255,255,255,0)" borderRadius={3} boxShadow="5px 10px 12px 1px black" className="foodcard" style={{cursor: "pointer"}}>
+                                    <img width="50%" src={require(`../../components/images/${item.src}`)}/>
+                                    <Box width="90%" display="flex" justifyContent="space-between" m={7} marginLeft={1} marginRight={1} style={{textShadow: "0px 0px 10px white"}}>
+                                        <Typography variant='h5' fontWeight="400" display="flex" flexDirection="column" fontSize="2rem">
                                             {item.name}
                                             <Typography style={{fontSize: "0.7rem", marginBottom: "1rem"}} display="flex" flexDirection="row">
-                                                <Typography m={0.2} style={{fontWeight: "400"}} marginRight={1} variant='h7'>
+                                                <Typography m={0.2} style={{fontWeight: "300", fontSize: "1.4rem"}} marginRight={1} variant='h7'>
                                                     {item.rating}
                                                 </Typography>
-                                                <Typography>
+                                                <Typography fontSize="1.4rem">
                                                     {item.rating >= 1.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
                                                     {item.rating >= 2.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
                                                     {item.rating >= 3.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
@@ -188,48 +195,14 @@ const ProfilePage = () => {
                                                     {item.rating > 4.0 && item.rating < 5.0 && <i class="bi bi-star-half" style={{marginRight: "3px"}}></i>}
                                                     {item.rating === 5.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}                                                    
                                                 </Typography>
+                                                
                                             </Typography>
+                                            <Typography fontSize="1rem">
+                                            {item.description}
                                         </Typography>
-                                        <img width={35} height={35} src={require(`../../components/images/${item.country}.png`)}/>
-                                    </Box>
-                                </Box>
-                                </Grid>
-                                )
-                            }
-                        })
-                    }
-                </Grid>}
-                {value === "2" && <Grid container spacing={5}>
-                    {
-                        extendedFoodData.map((item) => {
-                            if (rateIndexes.includes(item.id) )
-                            {
-                                return (
-                                    <Grid item xs={3}>
-                                <Box onClick={() => {
-                                    dispatch(setFoodData(item))
-                                    navigate(`/food-gallery/${item.path}`)
-                                }
-                                    } height={260} bgcolor="rgb(255,255,255,0.3)" borderRadius={3} boxShadow="5px 10px 12px 1px black" className="foodcard" style={{cursor: "pointer"}}>
-                                    <img width="100%" src={require(`../../components/images/${item.src}`)}/>
-                                    <Box width="90%" display="flex" justifyContent="space-between" marginLeft={1} style={{textShadow: "0px 0px 10px white"}}>
-                                        <Typography variant='h5' fontWeight="400" display="flex" flexDirection="column">
-                                            {item.name}
-                                            <Typography style={{fontSize: "0.7rem", marginBottom: "1rem"}} display="flex" flexDirection="row">
-                                                <Typography m={0.2} style={{fontWeight: "400"}} marginRight={1} variant='h7'>
-                                                    {item.rating}
-                                                </Typography>
-                                                <Typography>
-                                                    {item.rating >= 1.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
-                                                    {item.rating >= 2.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
-                                                    {item.rating >= 3.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
-                                                    {item.rating >= 4.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
-                                                    {item.rating > 4.0 && item.rating < 5.0 && <i class="bi bi-star-half" style={{marginRight: "3px"}}></i>}
-                                                    {item.rating === 5.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}                                                    
-                                                </Typography>
-                                            </Typography>
                                         </Typography>
-                                        <img width={35} height={35} src={require(`../../components/images/${item.country}.png`)}/>
+                                        
+                                        <img width={50} height={50} src={require(`../../components/images/${item.country}.png`)}/>
                                     </Box>
                                 </Box>
                                 </Grid>
@@ -239,8 +212,7 @@ const ProfilePage = () => {
                     }
                 </Grid>}
                 </Box>
-            </Box>
-            <Box>
+            {value === "1" && <Box width="33%" marginTop={2}>
                 <Typography variant='h1' m={2}>
                     Lists Breakdown
                 </Typography>
@@ -249,7 +221,7 @@ const ProfilePage = () => {
                         if (foodIndexes.includes(item.id) ) {
                             return (
                                 <Box m={2}>
-                                <Box width="30%" display="flex" flexDirection="row" justifyContent="space-between">
+                                <Box display="flex" flexDirection="row" justifyContent="space-between">
                                     <Typography variant='h7'>
                                         {item.name}
                                     </Typography>
@@ -263,7 +235,7 @@ const ProfilePage = () => {
                     })
                 }
                 <Box m={2}>
-                <Box width="30%" display="flex" flexDirection="row" justifyContent="space-between" borderTop={`2px solid ${theme.palette.mode === "dark" ? "white" : "black"}`} paddingTop={2}>
+                <Box width="100%" display="flex" flexDirection="row" justifyContent="space-between" borderTop={`2px solid ${theme.palette.mode === "dark" ? "white" : "black"}`} paddingTop={2}>
                     <Typography variant='h7'>
                         Grand Total
                     </Typography>
@@ -272,8 +244,7 @@ const ProfilePage = () => {
                     </Typography>
                 </Box>
                 </Box>
-            </Box>
-            <Box m={2}>
+                <Box m={2}>
                 <form action='http://localhost:3001/pay' method='post'>
                     <input type='submit' style={{
                         width: "225px",
@@ -282,10 +253,61 @@ const ProfilePage = () => {
                         border: "1px solid white",
                         borderRadius: "4px",
                         color: "white",
-                        fontStyle: "italic"
+                        fontStyle: "italic",
                     }} onClick={handleSubmit} value="CONTINUE TO PAY WITH PAYPAL"/>
                 </form>
             </Box>
+                </Box>}
+            
+            </Box>
+            {value === "2" && <Grid container spacing={5}>
+                    {
+                        extendedFoodData.map((item) => {
+                            if (rateIndexes.includes(item.id) )
+                            {
+                                return (
+                                    <Grid item xs={6}>
+                                <Box onClick={() => {
+                                    dispatch(setFoodData(item))
+                                    navigate(`/food-gallery/${item.path}`)
+                                }
+                                    }
+                                    display="flex" flexDirection="row"
+                                    bgcolor="rgb(255,255,255,0.3)" borderRadius={3} boxShadow="5px 10px 12px 1px black" className="foodcard" style={{cursor: "pointer"}}>
+                                    <img width="50%" src={require(`../../components/images/${item.src}`)}/>
+                                    <Box width="90%" display="flex" justifyContent="space-between" marginLeft={1} style={{textShadow: "0px 0px 10px white"}}>
+                                        <Typography variant='h5' fontWeight="400" display="flex" flexDirection="column">
+                                            {item.name}
+                                            <Typography style={{fontSize: "0.7rem", marginBottom: "1rem"}} display="flex" flexDirection="row">
+                                                <Typography m={0.2} style={{fontWeight: "400"}} marginRight={1} variant='h7'>
+                                                    {item.rating}
+                                                </Typography>
+                                                <Typography>
+                                                    {item.rating >= 1.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
+                                                    {item.rating >= 2.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
+                                                    {item.rating >= 3.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
+                                                    {item.rating >= 4.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}
+                                                    {item.rating > 4.0 && item.rating < 5.0 && <i class="bi bi-star-half" style={{marginRight: "3px"}}></i>}
+                                                    {item.rating === 5.0 && <i class="bi bi-star-fill" style={{marginRight: "3px"}}></i>}                                                    
+                                                </Typography>
+                                                
+                                            </Typography>
+                                            <Typography>
+                                            {item.description}
+                                        </Typography>
+                                        </Typography>
+                                        
+                                        <img width={35} height={35} src={require(`../../components/images/${item.country}.png`)}/>
+                                    </Box>
+                                </Box>
+                                </Grid>
+                                )
+                            }
+                        })
+                    }
+                </Grid>}
+            </Box>
+            
         </Box>
   )
 }

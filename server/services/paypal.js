@@ -12,13 +12,23 @@ async function generateAccessToken() {
             password: process.env.PAYPAL_SECRET
         }
     })
-    console.log(global.totalPrice);
     return response.data.access_token
-    
 }
 
 const createOrder = async () => {
     const accessToken = await generateAccessToken();
+    const items = global.priceBreakdown.priceBreakdown.splice(0, global.priceBreakdown.priceBreakdown.length - 1).map((item) => {        
+        return ({
+            name: item.name,
+            description: "Complete",
+            quantity: 1,
+            unit_amount: {
+                currency_code: "USD",
+                value: item.price
+            }
+        })
+    })
+    
     const response = await axios({
         url: process.env.PAYPAL_BASE_URL + "/v2/checkout/orders",
         method: "post",
@@ -30,25 +40,19 @@ const createOrder = async () => {
             intent: "CAPTURE",
             purchase_units: [
                 {
-                    items: [
-                        {
-                            name: "Something",
-                            description: "Complete",
-                            quantity: 1,
-                            unit_amount: {
-                                currency_code: "USD",
-                                value: global.totalPrice.totalPrice
-                            }
-                        }
-                    ],
+                    items: items,
                     amount: {
                         currency_code: "USD",
-                        value: global.totalPrice.totalPrice,
+                        value: global.priceBreakdown.priceBreakdown[global.priceBreakdown.priceBreakdown.length - 1].totalPrice + 50,
                         breakdown: {
                             item_total: {
                                 currency_code: "USD",
-                                value: global.totalPrice.totalPrice
-                            }
+                                value: global.priceBreakdown.priceBreakdown[global.priceBreakdown.priceBreakdown.length - 1].totalPrice
+                            },
+                            shipping: {
+                                currency_code: "USD",
+                                value: 50
+                            },
                         }
                     }
                 }
@@ -57,11 +61,10 @@ const createOrder = async () => {
                 return_url: "http://localhost:3000/complete-order",
                 cancel_url: "http://localhost:3000/cancel-order",
                 user_action: "PAY_NOW",
-                brand_name: "Cafe Dulcet"
+                brand_name: "Café Dulcet"
             }
         })
     })
-    console.log(global.totalPrice);
     return response.data.links.find(link => link.rel === "approve").href;
     
 }
