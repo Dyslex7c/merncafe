@@ -5,7 +5,7 @@ A café-oriented website developed using MERN with payment gateway implemented u
 # Features
 - Accessible information about various cuisines around the world (uses MediaWiki API) along with their country of origin, type etc.
 - Search filter which provides fast and accurate results based on the user's query 
-- Customer reviews and ratings (stored using state management libraries like redux toolkit)
+- Customer reviews and ratings (stored using state management libraries like reduxjs toolkit)
 - Readable menu book with scope for flipping pages (built using React component)
 - Integrated payment gateway implemented using PayPal (for testing purposes only)
 
@@ -25,3 +25,8 @@ https://github.com/user-attachments/assets/3a6ed9ed-8382-4306-9e80-247a3c6c631b
 
 ## Readable Menu with flipping pages option (React Component)
 
+https://github.com/user-attachments/assets/e6e3f819-fc00-47c1-8727-aefe2bacb6df
+
+## Integrated payment gateway using PayPal
+
+https://github.com/user-attachments/assets/44193757-168b-4d26-abc5-dabb3acdb25d
