@@ -245,7 +245,7 @@ const ProfilePage = () => {
                 </Box>
                 </Box>
                 <Box m={2}>
-                <form action='http://localhost:3001/pay' method='post'>
+                <form action='https://merncafe-server.vercel.app/pay' method='post'>
                     <input type='submit' style={{
                         width: "225px",
                         height: "40px",
