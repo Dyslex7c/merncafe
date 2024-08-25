@@ -60,11 +60,7 @@ const ProfilePage = () => {
         dispatch(setTotalPrice(totalPrice));
         
         try {
-            axios.post("https://merncafe-server.vercel.app", {priceBreakdown}, {
-                headers: {
-                    'Content-Type': 'application/json',
-                  },
-            })
+            axios.post("https://merncafe-server.vercel.app", priceBreakdown[0]);
         }
         catch(err){
             console.log(err);
