@@ -16,6 +16,19 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
+app.options('*', cors(
+    {
+        origin: ["https://merncafe.vercel.app"],
+        methods: [
+            "POST",
+             "GET"
+        ],
+        credentials: true,
+        allowedHeaders: [
+            "Content-Type"
+        ]
+    }
+))
 app.use(cors(
     {
         origin: ["https://merncafe.vercel.app"],
