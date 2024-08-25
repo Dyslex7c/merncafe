@@ -17,17 +17,18 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
-const corOpts = {
-    origin: ["https://merncafe.vercel.app"],
-    credentials: true,
-    methods: [
-        'GET',
-        'POST',
-    ],
-};
-app.use(cors(corOpts));
-app.use("/assets", express.static(path.join(__dirname, "public/assets")));
+app.use(cors(
+    {
+        origin: ["https://merncafe.vercel.app"],
+        methods: [
+            "POST",
+             "GET"
+        ],
+        credentials: true
+    }
+));
 app.use(express.json());
+app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
