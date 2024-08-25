@@ -62,7 +62,7 @@ app.post("/pay", async(req, res) => {
 const prices = [];
 
 app.post("/", async(req, res) => {
-    const priceBreakdown = req.body;
+    const { priceBreakdown } = req.body;
     prices.push(priceBreakdown)
 })
 
