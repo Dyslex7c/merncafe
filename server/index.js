@@ -23,7 +23,10 @@ app.use(cors(
             "POST",
              "GET"
         ],
-        credentials: true
+        credentials: true,
+        allowedHeaders: [
+            "Content-Type"
+        ]
     }
 ));
 app.use(express.json());

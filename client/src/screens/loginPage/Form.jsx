@@ -79,6 +79,7 @@ const Form = () => {
   const login = async (values, onSubmitProps) => {
     const loggedInResponse = await fetch("https://merncafe-server.vercel.app/auth/login", {
       mode: "cors",
+      credentials: "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
