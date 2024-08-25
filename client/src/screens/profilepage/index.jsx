@@ -60,7 +60,10 @@ const ProfilePage = () => {
         dispatch(setTotalPrice(totalPrice));
         
         try {
-            axios.post("https://merncafe-server.vercel.app", priceBreakdown[0]);
+            axios.post("https://merncafe-server.vercel.app", priceBreakdown[0], {
+                mode: "cors",
+                credentials: "include",
+            });
         }
         catch(err){
             console.log(err);
