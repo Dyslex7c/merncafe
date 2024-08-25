@@ -63,10 +63,6 @@ const ProfilePage = () => {
             axios.post("https://merncafe-server.vercel.app", priceBreakdown[0], {
                 mode: "cors",
                 credentials: "include",
-                headers: {
-                    'X-Requested-With': null,
-                    'Access-Control-Allow-Origin': '*'
-                }
             });
         }
         catch(err){
