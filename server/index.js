@@ -19,11 +19,12 @@ dotenv.config();
 const app = express();
 const corOpts = {
     origin: '*',
+    credentials: true,
+    optionSuccessStatus:200,
     methods: [
         'GET',
         'POST',
     ],
-
     allowedHeaders: [
         'Content-Type',
     ],
