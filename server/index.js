@@ -61,8 +61,7 @@ app.post("/pay", async(req, res) => {
 
 app.post("/", async(req, res) => {
     global.price = req.body;
-    console.log(global.price);
-    
+    res.send(global.price);
 })
 
 const PORT = process.env.PORT || 6001;
