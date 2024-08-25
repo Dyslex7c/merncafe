@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
-app.options('*', cors(
+app.use(cors(
     {
         origin: ["https://merncafe.vercel.app"],
         methods: [
@@ -28,20 +28,7 @@ app.options('*', cors(
             "Content-Type"
         ]
     }
-))
-// app.use(cors(
-//     {
-//         origin: ["https://merncafe.vercel.app"],
-//         methods: [
-//             "POST",
-//              "GET"
-//         ],
-//         credentials: true,
-//         allowedHeaders: [
-//             "Content-Type"
-//         ]
-//     }
-// ));
+));
 app.use(express.json());
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 app.use(morgan("common"));
