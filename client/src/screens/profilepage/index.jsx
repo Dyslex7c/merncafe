@@ -61,8 +61,7 @@ const ProfilePage = () => {
         
         try {
             axios.post("https://merncafe-server.vercel.app", {priceBreakdown}, {
-                mode: "cors",
-                credentials: "include",
+                withCredentials: true
             });
         }
         catch(err){
