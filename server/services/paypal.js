@@ -17,6 +17,8 @@ async function generateAccessToken() {
 
 const createOrder = async () => {
     const accessToken = await generateAccessToken();
+    console.log(global.priceBreakdown);
+    
     const items = global.priceBreakdown.priceBreakdown.splice(0, global.priceBreakdown.priceBreakdown.length - 1).map((item) => {        
         return ({
             name: item.name,

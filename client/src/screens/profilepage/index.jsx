@@ -60,7 +60,7 @@ const ProfilePage = () => {
         dispatch(setTotalPrice(totalPrice));
         
         try {
-            axios.post("https://merncafe-server.vercel.app/", {priceBreakdown})
+            axios.post("https://merncafe-server.vercel.app", {priceBreakdown})
         }
         catch(err){
             console.log(err);
