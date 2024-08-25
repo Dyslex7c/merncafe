@@ -207,7 +207,7 @@ const HomePage = () => {
                     </Grid>
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center" width="100%">
-                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2024 © Title™ Ltd. All rights reserved. Images and icons by Freepik, Pixabay, and Flaticons</Typography>
+                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2024 © Title™ Ltd. All rights reserved. Images and icons by Adobe Stock, Freepik, Pixabay, and Flaticons</Typography>
                 <Box display="flex">
                     <Mail />
                     <Typography marginLeft={1} marginRight={4}>cafe@yahoomail.com</Typography>

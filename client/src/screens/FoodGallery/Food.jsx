@@ -35,8 +35,11 @@ const Food = () => {
     const ListIndexes = [];
     for (let i = 0; i < userList.length; i++)
     {
-        if (userList[i].email === user.email)
-            ListIndexes.push(userList[i].foodId);
+        if (token)
+        {
+            if (userList[i].email === user.email && user)
+                ListIndexes.push(userList[i].foodId);
+        }
     }
     console.log(ListIndexes);
     useEffect(() => {

@@ -141,7 +141,7 @@ const ProfilePage = () => {
                         </Box>
                         <Box display="flex" flexDirection="column" width="100%" alignItems="center" borderRight={`1px solid ${theme.palette.mode === "dark" ? "white" : "black"}`} borderLeft={`1px solid ${theme.palette.mode === "dark" ? "white" : "black"}`}>
                             <Typography variant='h7'>0</Typography>
-                            <Typography variant='h7'>DISH</Typography>
+                            <Typography variant='h7'>REVIEWED</Typography>
                         </Box>
                         <Box display="flex" flexDirection="column" width="100%" alignItems="center">
                             <Typography variant='h7'>0</Typography>
@@ -158,7 +158,7 @@ const ProfilePage = () => {
                     <TabList textColor='blue' onChange={handleChange} aria-label="lab API tabs example">
                         <Tab style={{fontSize: "1rem", fontWeight: "500"}} label="LISTS" value="1" />
                         <Tab style={{fontSize: "1rem", fontWeight: "500"}} label="RATED" value="2" />
-                        <Tab style={{fontSize: "1rem", fontWeight: "500"}} label="Item Three" value="3" />
+                        <Tab style={{fontSize: "1rem", fontWeight: "500"}} label="REVIEWED" value="3" />
                     </TabList>
                     </Box>
                 </TabContext>
@@ -260,7 +260,7 @@ const ProfilePage = () => {
                 </Box>}
             
             </Box>
-            {value === "2" && <Grid container spacing={5}>
+            {value === "2" && <Grid container spacing={2}>
                     {
                         extendedFoodData.map((item) => {
                             if (rateIndexes.includes(item.id) )
@@ -275,7 +275,7 @@ const ProfilePage = () => {
                                     display="flex" flexDirection="row"
                                     bgcolor="rgb(255,255,255,0.3)" borderRadius={3} boxShadow="5px 10px 12px 1px black" className="foodcard" style={{cursor: "pointer"}}>
                                     <img width="50%" src={require(`../../components/images/${item.src}`)}/>
-                                    <Box width="90%" display="flex" justifyContent="space-between" marginLeft={1} style={{textShadow: "0px 0px 10px white"}}>
+                                    <Box width="90%" display="flex" justifyContent="space-between" marginLeft={1} marginTop={5} style={{textShadow: "0px 0px 10px white"}}>
                                         <Typography variant='h5' fontWeight="400" display="flex" flexDirection="column">
                                             {item.name}
                                             <Typography style={{fontSize: "0.7rem", marginBottom: "1rem"}} display="flex" flexDirection="row">
@@ -296,8 +296,10 @@ const ProfilePage = () => {
                                             {item.description}
                                         </Typography>
                                         </Typography>
+                                        <Box marginRight={1}>
+                                            <img width={35} height={35} src={require(`../../components/images/${item.country}.png`)}/>
+                                        </Box>
                                         
-                                        <img width={35} height={35} src={require(`../../components/images/${item.country}.png`)}/>
                                     </Box>
                                 </Box>
                                 </Grid>
@@ -307,7 +309,15 @@ const ProfilePage = () => {
                     }
                 </Grid>}
             </Box>
-            
+            <Box display="flex" flexDirection="column" marginTop={7} alignItems="center" width="100%">
+                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2024 © Title™ Ltd. All rights reserved. Images and icons by Adobe Stock, Freepik, Pixabay, and Flaticons</Typography>
+                <Box display="flex">
+                    <Mail />
+                    <Typography marginLeft={1} marginRight={4}>cafe@yahoomail.com</Typography>
+                    <Phone/>
+                    <Typography marginLeft={1}>+91-33-17296023</Typography>
+                </Box>
+            </Box>
         </Box>
   )
 }

@@ -349,7 +349,7 @@ const Form = () => {
             bottom: `${ isLogin ? "-320px" : "45px"}`
             }}>
                 <Typography marginBottom={3}>
-                    All trademarks are properties of their respective owners. 2024 © Title™ Ltd. All rights reserved. Images and icons by Freepik, Pixabay, and Flaticons
+                    All trademarks are properties of their respective owners. 2024 © Title™ Ltd. All rights reserved. Images and icons by Adobe Stock, Freepik, Pixabay, and Flaticons
                 </Typography>
                 <Box display="flex">
                     <Mail />

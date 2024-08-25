@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Typography, Box, useTheme, Grid, InputBase, IconButton } from '@mui/material'
+import { Phone, Mail } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
@@ -93,7 +94,7 @@ const FoodGalleryPage = () => {
         <Box m={5} marginLeft={9} sx={{
             border: theme.palette.mode === "dark" ? "2px solid white" : "2px solid black",
             bgcolor: theme.palette.mode === "dark" ? "black" : "white",
-            width: "650px"
+            width: "650px",
         }}>
             <InputBase 
             style={{
@@ -104,8 +105,11 @@ const FoodGalleryPage = () => {
             sx={{
                 width: "600px",
                 height: "40px",
+                input: {
+                    cursor: "text"
+                },
                 ".css-yz9k0d-MuiInputBase-input": {
-                    color: "black"
+                    color: "black",
                 },
                 paddingLeft: "1rem",
                 fontSize: "1rem"
@@ -643,6 +647,15 @@ const FoodGalleryPage = () => {
               })}
           </Grid>
   </Box>}
+  <Box display="flex" flexDirection="column" alignItems="center" width="100%">
+                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2024 © Title™ Ltd. All rights reserved. Images and icons by Adobe Stock, Freepik, Pixabay, and Flaticons</Typography>
+                <Box display="flex">
+                    <Mail />
+                    <Typography marginLeft={1} marginRight={4}>cafe@yahoomail.com</Typography>
+                    <Phone/>
+                    <Typography marginLeft={1}>+91-33-17296023</Typography>
+                </Box>
+            </Box>
   </Box>
 )
 }

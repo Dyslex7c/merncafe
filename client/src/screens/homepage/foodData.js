@@ -9,6 +9,8 @@ const foodData = [
         "query": "Buffalo_wing",
         "country": "usa",
         "countryName": "United States of America",
+        "category": "appetizer-chicken",
+        "price": 115.90,
         "rating": 4.0
     },
     {
@@ -21,6 +23,8 @@ const foodData = [
         "query": "Fish_and_chips",
         "country": "uk",
         "countryName": "United Kingdom",
+        "category": "appetizer-fish",
+        "price": 100,
         "rating": 4.0
     },
     {
@@ -33,6 +37,8 @@ const foodData = [
         "query": "Lobster_roll",
         "country": "usa",
         "countryName": "United States of America",
+        "category": "appetizer-seafood",
+        "price": 167.44,
         "rating": 4.4
     },
     {
@@ -45,6 +51,8 @@ const foodData = [
         "query": "Tandoori_chicken",
         "country": "ind",
         "countryName": "India",
+        "category": "appetizer-chicken",
+        "price": 200.29,
         "rating": 4.4
     },
     {
@@ -69,6 +77,8 @@ const foodData = [
         "query": "Paella",
         "country": "spa",
         "countryName": "Spain",
+        "category": "maincourse-rice",
+        "price": 329.37,
         "rating": 4.3
     },
     {

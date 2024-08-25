@@ -381,7 +381,7 @@ const MenuPage = () => {
             </Typography>}</Box>}
             </Box>
         <Box display="flex" flexDirection="column" alignItems="center" width="100%" marginTop={10}>
-                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2023 © Title™ Ltd. All rights reserved.</Typography>
+                <Typography marginBottom={3}>All trademarks are properties of their respective owners. 2024 © Title™ Ltd. All rights reserved.</Typography>
                 <Box display="flex">
                     <Mail />
                     <Typography marginLeft={1} marginRight={4}>cafe@yahoomail.com</Typography>
