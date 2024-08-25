@@ -60,8 +60,8 @@ app.post("/pay", async(req, res) => {
 })
 
 app.post("/", async(req, res) => {
-    global.priceBreakdown = req.body;
-    console.log(global.priceBreakdown);
+    global.price = req.body;
+    console.log(global.price);
     
 })
 
