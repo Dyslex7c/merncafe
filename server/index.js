@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 const app = express();
 const corOpts = {
-    origin: '*',
+    origin: ["https://merncafe.vercel.app"],
     credentials: true,
     optionSuccessStatus:200,
     methods: [
