@@ -64,7 +64,8 @@ const ProfilePage = () => {
                 mode: "cors",
                 credentials: "include",
                 headers: {
-                    'X-Requested-With': null
+                    'X-Requested-With': null,
+                    'Access-Control-Allow-Origin': '*'
                 }
             });
         }
