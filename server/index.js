@@ -20,12 +20,12 @@ const app = express();
 const corOpts = {
     origin: ["https://merncafe.vercel.app"],
     credentials: true,
-    optionSuccessStatus:200,
     methods: [
         'GET',
         'POST',
     ],
 };
+app.use(cors(corOpts));
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 app.use(express.json());
 app.use(helmet());
@@ -33,7 +33,6 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors(corOpts));
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
