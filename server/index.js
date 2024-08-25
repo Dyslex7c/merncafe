@@ -25,7 +25,10 @@ app.use(cors(
         ],
         credentials: true,
         allowedHeaders: [
-            "Content-Type"
+            "Content-Type",
+            "Accept",
+            "Access-Control-Allow-Origin",
+            "X-Requested-With"
         ]
     }
 ));
