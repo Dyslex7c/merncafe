@@ -58,8 +58,8 @@ const createOrder = async () => {
                 }
             ],
             application_context: {
-                return_url: "http://localhost:3000/complete-order",
-                cancel_url: "http://localhost:3000/cancel-order",
+                return_url: "https://merncafe.vercel.app/complete-order",
+                cancel_url: "https://merncafe.vercel.app/cancel-order",
                 user_action: "PAY_NOW",
                 brand_name: "Café Dulcet"
             }
