@@ -81,7 +81,7 @@ const Form = () => {
       mode: "cors",
       credentials: "include",
       method: "POST",
-      //headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
     const loggedIn = await loggedInResponse.json();
