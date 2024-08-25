@@ -1,5 +1,6 @@
 import axios from "axios";
 import dotenv from "dotenv";
+import prices from "../index.js";
 dotenv.config();
 
 async function generateAccessToken() {
@@ -18,7 +19,7 @@ async function generateAccessToken() {
 const createOrder = async () => {
     const accessToken = await generateAccessToken();
     
-    const items = global.price.priceBreakdown.splice(0, global.priceBreakdown.priceBreakdown.length - 1).map((item) => {        
+    const items = prices[0].priceBreakdown.splice(0, prices[0].priceBreakdown.length - 1).map((item) => {        
         return ({
             name: item.name,
             description: "Complete",
@@ -44,11 +45,11 @@ const createOrder = async () => {
                     items: items,
                     amount: {
                         currency_code: "USD",
-                        value: global.price.priceBreakdown[global.price.priceBreakdown.length - 1].totalPrice + 50,
+                        value: prices[0].priceBreakdown[prices[0].priceBreakdown.length - 1].totalPrice + 50,
                         breakdown: {
                             item_total: {
                                 currency_code: "USD",
-                                value: global.price.priceBreakdown[global.price.priceBreakdown.length - 1].totalPrice
+                                value: prices[0].priceBreakdown[prices[0].priceBreakdown.length - 1].totalPrice
                             },
                             shipping: {
                                 currency_code: "USD",

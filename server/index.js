@@ -59,12 +59,16 @@ app.post("/pay", async(req, res) => {
     }
 })
 
+const prices = [];
+
 app.post("/", async(req, res) => {
-    global.price = req.body;
-    res.send(global.price);
+    const priceBreakdown = req.body;
+    prices.push(priceBreakdown)
 })
 
 const PORT = process.env.PORT || 6001;
 mongoose.connect(process.env.MONGO_URL).then(() => {
     app.listen(PORT, () => console.log(`Server PORT: ${PORT}`));
 }).catch((error) => console.log(`${error} did not connect`));
+
+export default prices;
