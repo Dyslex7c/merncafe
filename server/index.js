@@ -25,9 +25,6 @@ const corOpts = {
         'GET',
         'POST',
     ],
-    allowedHeaders: [
-        'Content-Type',
-    ],
 };
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 app.use(express.json());
