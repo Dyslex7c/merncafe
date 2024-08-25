@@ -60,7 +60,7 @@ const ProfilePage = () => {
         dispatch(setTotalPrice(totalPrice));
         
         try {
-            axios.post("http://localhost:3001/", {priceBreakdown})
+            axios.post("https://merncafe-server.vercel.app/", {priceBreakdown})
         }
         catch(err){
             console.log(err);
@@ -106,7 +106,7 @@ const ProfilePage = () => {
             boxShadow={`5px 10px 12px 1px ${theme.palette.mode === "dark" ? "white" : "black" }`}
             >
                 <img 
-                src = {`http://localhost:3001/assets/${user.picturePath}`}
+                src = {`https://merncafe-server.vercel.app/assets/${user.picturePath}`}
                 style={{
                     width: "150px",
                     borderRadius: "75px"
