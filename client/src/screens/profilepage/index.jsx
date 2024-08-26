@@ -60,12 +60,12 @@ const ProfilePage = () => {
         dispatch(setTotalPrice(totalPrice));
         
         try {
-                const response = await axios({
-                    method: "POST",
-                    credentials: "include",
-                    url: "https://merncafe-server.vercel.app/",
-                    data: {totalPrice: 100}
-                });
+                const response = await fetch(
+                    "https://merncafe-server.vercel.app",
+                    {
+                        method: "POST",
+                        body: priceBreakdown,
+                    });
                 console.log(response);
                 
             }
