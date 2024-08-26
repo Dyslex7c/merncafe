@@ -61,10 +61,10 @@ const ProfilePage = () => {
         
         try {
                 const response = await fetch(
-                    "https://merncafe-server.vercel.app",
+                    "https://merncafe-server.vercel.app/",
                     {
                         mode: "cors",
-                        credentials: "include",
+                        credentials: "same-origin",
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({priceBreakdown}),
