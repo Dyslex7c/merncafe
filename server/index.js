@@ -60,7 +60,7 @@ app.post("/pay", async(req, res) => {
     }
 })
 
-const prices = [];
+// const prices = [];
 
 // app.post("/", async(req, res) => {
 //     const priceBreakdown = req.body;
@@ -72,4 +72,4 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
     app.listen(PORT, () => console.log(`Server PORT: ${PORT}`));
 }).catch((error) => console.log(`${error} did not connect`));
 
-export default prices;
+// export default prices;

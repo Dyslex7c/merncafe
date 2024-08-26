@@ -1,6 +1,6 @@
 import axios from "axios";
 import dotenv from "dotenv";
-import prices from "../index.js";
+// import prices from "../index.js";
 dotenv.config();
 
 async function generateAccessToken() {
@@ -43,7 +43,7 @@ const createOrder = async () => {
             purchase_units: [
                 {
                     items: [
-                                   { name: prices[0],
+                                   { name: "Something",
                                     description: "Complete",
                                     quantity: 1,
                                     unit_amount: {
