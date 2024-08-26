@@ -23,29 +23,13 @@ app.use(cors(
             "POST",
              "GET"
         ],
-        credentials: true,
         allowedHeaders: [
             "Content-Type",
             "Accept",
-            "X-Requested-With"
         ]
     }
 ));
-app.options("*", cors(
-    {
-        origin: ["https://merncafe.vercel.app"],
-        methods: [
-            "POST",
-             "GET"
-        ],
-        credentials: true,
-        allowedHeaders: [
-            "Content-Type",
-            "Accept",
-            "X-Requested-With"
-        ]
-    }
-));
+
 app.use(express.json());
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 app.use(morgan("common"));
