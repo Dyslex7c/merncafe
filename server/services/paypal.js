@@ -43,7 +43,7 @@ const createOrder = async () => {
             purchase_units: [
                 {
                     items: [
-                                   { name: "something",
+                                   { name: prices[0],
                                     description: "Complete",
                                     quantity: 1,
                                     unit_amount: {
