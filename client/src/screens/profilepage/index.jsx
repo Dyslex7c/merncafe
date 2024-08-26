@@ -67,7 +67,7 @@ const ProfilePage = () => {
                         credentials: "include",
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: {priceBreakdown},
+                        body: JSON.stringify({priceBreakdown}),
                     });
                 console.log(response);
                 
