@@ -62,6 +62,7 @@ const ProfilePage = () => {
         try {
                 const response = await axios({
                     method: "POST",
+                    credentials: "include",
                     url: "https://merncafe-server.vercel.app/",
                     data: priceBreakdown
                 });
