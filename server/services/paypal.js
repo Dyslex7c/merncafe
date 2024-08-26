@@ -19,17 +19,17 @@ async function generateAccessToken() {
 const createOrder = async () => {
     const accessToken = await generateAccessToken();
     
-    const items = prices[0].splice(0, prices[0].length - 1).map((item) => {        
-        return ({
-            name: item.name,
-            description: "Complete",
-            quantity: 1,
-            unit_amount: {
-                currency_code: "USD",
-                value: item.price
-            }
-        })
-    })
+    // const items = prices[0].splice(0, prices[0].length - 1).map((item) => {        
+    //     return ({
+    //         name: item.name,
+    //         description: "Complete",
+    //         quantity: 1,
+    //         unit_amount: {
+    //             currency_code: "USD",
+    //             value: item.price
+    //         }
+    //     })
+    // })
     
     const response = await axios({
         url: process.env.PAYPAL_BASE_URL + "/v2/checkout/orders",
@@ -42,14 +42,22 @@ const createOrder = async () => {
             intent: "CAPTURE",
             purchase_units: [
                 {
-                    items: items,
+                    items: [
+                                   { name: "something",
+                                    description: "Complete",
+                                    quantity: 1,
+                                    unit_amount: {
+                                        currency_code: "USD",
+                                        value: 100
+                                    }}
+                    ],
                     amount: {
                         currency_code: "USD",
-                        value: prices[0][prices[0].length - 1].totalPrice + 50,
+                        value: 150,
                         breakdown: {
                             item_total: {
                                 currency_code: "USD",
-                                value: prices[0][prices[0].length - 1].totalPrice
+                                value: 100
                             },
                             shipping: {
                                 currency_code: "USD",
