@@ -56,14 +56,18 @@ const ProfilePage = () => {
         setValue(newValue);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         dispatch(setTotalPrice(totalPrice));
         
         try {
-            axios.post("https://merncafe-server.vercel.app", {priceBreakdown}, {
-                withCredentials: true
-            });
-        }
+                const response = await axios({
+                    method: "POST",
+                    url: "https://merncafe-server.vercel.app/",
+                    data: priceBreakdown
+                });
+                console.log(response);
+                
+            }
         catch(err){
             console.log(err);
         }
