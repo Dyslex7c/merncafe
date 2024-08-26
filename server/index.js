@@ -2,7 +2,6 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import helmet from "helmet";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import multer from "multer";
@@ -17,25 +16,25 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
-const corOpts = {
-    origin: '*',
-    methods: [
-        'GET',
-        'POST',
-    ],
+app.use(cors(
+    {
+        origin: ["https://merncafe.vercel.app"],
+        methods: [
+            "POST",
+             "GET"
+        ],
+        credentials: true,
+        allowedHeaders: [
+            "Content-Type",
+        ]
+    }
+));
 
-    allowedHeaders: [
-        'Content-Type',
-    ],
-};
-app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 app.use(express.json());
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors(corOpts));
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -64,7 +63,7 @@ app.post("/pay", async(req, res) => {
 const prices = [];
 
 app.post("/", async(req, res) => {
-    const priceBreakdown = req.body;
+    const priceBreakdown = req.body.priceBreakdown;
     prices.push(priceBreakdown)
 })
 
