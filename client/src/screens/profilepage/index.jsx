@@ -64,7 +64,7 @@ const ProfilePage = () => {
                     method: "POST",
                     credentials: "include",
                     url: "https://merncafe-server.vercel.app/",
-                    data: priceBreakdown
+                    data: {totalPrice: 100}
                 });
                 console.log(response);
                 
