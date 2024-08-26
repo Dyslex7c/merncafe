@@ -63,8 +63,11 @@ const ProfilePage = () => {
                 const response = await fetch(
                     "https://merncafe-server.vercel.app",
                     {
+                        mode: "cors",
+                        credentials: "include",
                         method: "POST",
-                        body: priceBreakdown,
+                        headers: { "Content-Type": "application/json" },
+                        body: {priceBreakdown},
                     });
                 console.log(response);
                 
