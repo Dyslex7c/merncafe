@@ -9,6 +9,8 @@ A café-oriented website developed using MERN with payment gateway implemented u
 - Readable menu book with scope for flipping pages (built using React component)
 - Integrated payment gateway implemented using PayPal (for testing purposes only)
 
+> Disclaimer: Please note that the payment gateway on this website is a demo feature and does not involve real funds. This is intended solely for demonstration purposes.
+
 # Features Demo
 
 ## Access information about various cuisines
@@ -30,3 +32,5 @@ https://github.com/user-attachments/assets/e6e3f819-fc00-47c1-8727-aefe2bacb6df
 ## Integrated payment gateway using PayPal
 
 https://github.com/user-attachments/assets/44193757-168b-4d26-abc5-dabb3acdb25d
+
+> The payment gateway currently uses static price values instead of the actual prices displayed to the users on the frontend. Efforts are being made to implement a solution that will allow the payment gateway to reflect correct prices dynamically. This will be addressed in a future update.
