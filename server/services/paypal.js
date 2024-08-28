@@ -43,7 +43,7 @@ const createOrder = async () => {
             purchase_units: [
                 {
                     items: [
-                                   { name: `${prices[0].price}`,
+                                   { name: `${Object.keys(prices[0]).length}`,
                                     description: "Complete",
                                     quantity: 1,
                                     unit_amount: {
