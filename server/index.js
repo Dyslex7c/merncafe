@@ -51,8 +51,12 @@ app.post("/auth/register", upload.single("picture"), register);
 
 app.use("/auth", authRoutes);
 
+const prices = [];
+
 app.post("/pay", async(req, res) => {
     try {
+        const price = req.body;
+        prices.push(price);
         const url = await createOrder();
         res.redirect(url);
     } catch (err) {
@@ -72,4 +76,4 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
     app.listen(PORT, () => console.log(`Server PORT: ${PORT}`));
 }).catch((error) => console.log(`${error} did not connect`));
 
-// export default prices;
+export default prices;

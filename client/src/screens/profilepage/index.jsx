@@ -59,22 +59,12 @@ const ProfilePage = () => {
     const handleSubmit = async (event) => {
         dispatch(setTotalPrice(totalPrice));
         
-        // try {
-        //         const response = await fetch(
-        //             "https://merncafe-server.vercel.app/",
-        //             {
-        //                 mode: "cors",
-        //                 credentials: "same-origin",
-        //                 method: "POST",
-        //                 headers: { "Content-Type": "application/json" },
-        //                 body: JSON.stringify({priceBreakdown}),
-        //             });
-        //         console.log(response);
-                
-        //     }
-        // catch(err){
-        //     console.log(err);
-        // }
+        try {
+                axios.post("https://merncafe-server.vercel.app/pay", {priceBreakdown})
+            }
+        catch(err){
+            console.log(err);
+        }
     }
 
     
